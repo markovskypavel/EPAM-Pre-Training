@@ -8,7 +8,7 @@ import by.markovsky.tasktwo.algorithm.BasicAlgorithm;
 public class ExerciseFour {
 
     public static void main(String[] args) {
-        int day = 01, month = 02, year = 2018; //Date
+        int day = 1, month = 2, year = 2018; //Date
         System.out.println("The date of the next day is " + BasicAlgorithm.nextDate(day, month, year));
     }
 
