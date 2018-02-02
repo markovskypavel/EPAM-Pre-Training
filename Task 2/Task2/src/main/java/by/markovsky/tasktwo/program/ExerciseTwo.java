@@ -1,10 +1,12 @@
 package by.markovsky.tasktwo.program;
 
-import by.markovsky.tasktwo.algorithm.BasicAlgorithm;
+import by.markovsky.tasktwo.algorithm.ConditionAlgorithm;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+
+import static java.lang.Character.toLowerCase;
 
 /**
  * Created by Pavel Markovsky on 30.01.2018.
@@ -20,7 +22,7 @@ public class ExerciseTwo {
                 throw new Exception();
             }
             System.out.println("Your letter is " + letter
-                    + " (" + (BasicAlgorithm.isVowel1(Character.toLowerCase(letter)) ? "vowel" : "consonant") + ")");
+                    + " (" + (ConditionAlgorithm.isVowel1(toLowerCase(letter)) ? "vowel" : "consonant") + ")");
         } catch (IOException ioe) {
             ioe.printStackTrace();
         } catch (Exception e) {

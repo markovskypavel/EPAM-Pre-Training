@@ -1,6 +1,6 @@
 package by.markovsky.tasktwo.program;
 
-import by.markovsky.tasktwo.algorithm.BasicAlgorithm;
+import by.markovsky.tasktwo.algorithm.ConditionAlgorithm;
 
 import java.io.IOException;
 
@@ -9,11 +9,16 @@ import java.io.IOException;
  */
 public class ExerciseOne {
 
+    public static final int MIN_YEAR = 0;
+
     public static void main(String[] args) {
         int N = 512;
         try {
-            if (N > 0) {
-                System.out.println("-Dragon, how old are you?" + "\n-I am " + N + " years old, " + BasicAlgorithm.countDragon(N));
+            if (N > MIN_YEAR) {
+                int heads = ConditionAlgorithm.countDragonHeads(N);
+                System.out.println("-Dragon, how old are you?" + "\n-I am " + N
+                        + " years old and I have " + heads + " heads and "
+                        + ConditionAlgorithm.countDragonEyes(heads) + " eyes.");
             } else {
                 throw new IOException();
             }

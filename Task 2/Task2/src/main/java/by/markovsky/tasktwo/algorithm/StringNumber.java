@@ -3,7 +3,7 @@ package by.markovsky.tasktwo.algorithm;
 /**
  * Created by Pavel Markovsky on 30.01.2018.
  */
-interface Numbers {
+public interface StringNumber {
 
     //Unique
     String ONE ="One";

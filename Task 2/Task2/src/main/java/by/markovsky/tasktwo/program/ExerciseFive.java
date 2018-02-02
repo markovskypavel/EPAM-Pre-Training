@@ -1,6 +1,6 @@
 package by.markovsky.tasktwo.program;
 
-import by.markovsky.tasktwo.algorithm.BasicAlgorithm;
+import by.markovsky.tasktwo.algorithm.ConditionAlgorithm;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -11,15 +11,18 @@ import java.io.InputStreamReader;
  */
 public class ExerciseFive {
 
+    public static final int MIN_NUMBER = 0;
+    public static final int MAX_NUMBER = 999;
+
     public static void main(String[] args) {
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
         try {
             System.out.print("Enter your number: ");
             int number = Integer.parseInt(reader.readLine());
-            if (number <= 0 || number > 999) {
+            if (number <= MIN_NUMBER || number > MAX_NUMBER) {
                 throw new Exception();
             }
-            System.out.println("Your number is " + number + " (" + BasicAlgorithm.intToString(number) + ")");
+            System.out.println("Your number is " + number + " (" + ConditionAlgorithm.intToString(number) + ")");
         } catch (IOException ioe) {
             ioe.printStackTrace();
         } catch (NumberFormatException nfe) {

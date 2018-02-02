@@ -12,7 +12,7 @@ public class ExerciseTwo {
         int R2 = 1;
         System.out.println("R1 = " + R1
                 + "\nR2 = " + R2
-                + "\nArea of a ring: " + BasicAlgorithm.findS(R1, R2));
+                + "\nArea of a ring: " + BasicAlgorithm.findRingArea(R1, R2));
     }
 
 }

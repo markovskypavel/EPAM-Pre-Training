@@ -4,37 +4,50 @@ import java.util.Random;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import static by.markovsky.tasktwo.algorithm.DragonAppearance.*;
+import static by.markovsky.tasktwo.algorithm.DragonYears.*;
+import static by.markovsky.tasktwo.algorithm.Month.*;
+import static by.markovsky.tasktwo.algorithm.Mood.*;
+import static by.markovsky.tasktwo.algorithm.StringNumber.*;
+import static by.markovsky.tasktwo.algorithm.Vowel.*;
+
 /**
  * Created by Pavel Markovsky on 30.01.2018.
  */
-public class BasicAlgorithm implements Numbers {
+public class ConditionAlgorithm {
 
     //Exercise 1
     //Count quantities of dragon's eyes and heads
-    public static String countDragon(int year) {
+    public static int countDragonHeads(int year) {
         int head; //+3 heads from the birthday
-        if (year >= 300) {
-            head = year + 503; //<==> (years - 300) + 100 * 2 + 200 * 3 + 3
-        } else if (year > 200 && year < 300) {
-            head = 2 * year + 203; //<==> 2 * (years - 200) + 200 * 3 + 3
+        if (year >= MAX_POINT_SECOND_PERIOD) {
+            head = THIRD_INTERVAL_HEAD_PER_YEAR * (year - MAX_POINT_SECOND_PERIOD) + SECOND_INTERVAL * SECOND_INTERVAL_HEAD_PER_YEAR
+                    + FIRST_INTERVAL * FIRST_INTERVAL_HEAD_PER_YEAR + BIRTH_YEARS; //<==> 1*(year-300)+100*2+200*3+3
+        } else if (year > MAX_POINT_FIRST_PERIOD && year < MAX_POINT_SECOND_PERIOD) {
+            head = SECOND_INTERVAL_HEAD_PER_YEAR * (year - MAX_POINT_FIRST_PERIOD)
+                    + FIRST_INTERVAL * FIRST_INTERVAL_HEAD_PER_YEAR + BIRTH_YEARS; //<==> 2*(year-200)+200*3+3
         } else {
-            head = year * 3 + 3;
+            head = year * FIRST_INTERVAL_HEAD_PER_YEAR + BIRTH_YEARS; //<==> year*3+3
         }
-        return head + " heads, " + head * 2 + " eyes";
+        return head;
+    }
+    //Count quantity of dragon's eyes
+    public static int countDragonEyes(int head) {
+        return head * EYES_QUANTITY;
     }
 
     //Exercise 2
     //Check if the letter is vowel or consonant (10 variants)
     public static boolean isVowel1(char letter) { //The first variant
         boolean vowel = false;
-        if (letter == 'a' || letter == 'e' || letter == 'i' || letter == 'o' || letter == 'u') {
+        if (letter == A || letter == E || letter == I || letter == O || letter == U) {
             vowel = true;
         }
         return vowel;
     }
     public static boolean isVowel12(char letter) { //The second variant of isVowel1
         boolean vowel;
-        if (letter == 'a' || letter == 'e' || letter == 'i' || letter == 'o' || letter == 'u') {
+        if (letter == A || letter == E || letter == I || letter == O || letter == U) {
             vowel = true;
         } else {
             vowel = false;
@@ -42,7 +55,7 @@ public class BasicAlgorithm implements Numbers {
         return vowel;
     }
     public static boolean isVowel13(char letter) { //The third variant of isVowel1
-        return (letter == 'a' || letter == 'e' || letter == 'i' || letter == 'o' || letter == 'u');
+        return (letter == A || letter == E || letter == I || letter == O || letter == U);
     }
     public static boolean isVowel14(char letter) { //The fourth variant of isVowel1
         return (letter == 97 || letter == 101 || letter == 105 || letter == 111 || letter == 117);
@@ -50,15 +63,15 @@ public class BasicAlgorithm implements Numbers {
 
     public static boolean isVowel2(char letter) { //The second variant
         boolean vowel;
-        if (letter == 'a') {
+        if (letter == A) {
             vowel = true;
-        } else if (letter == 'e') {
+        } else if (letter == E) {
             vowel = true;
-        } else if (letter == 'i') {
+        } else if (letter == I) {
             vowel = true;
-        } else if (letter == 'o') {
+        } else if (letter == O) {
             vowel = true;
-        } else if (letter == 'u') {
+        } else if (letter == U) {
             vowel = true;
         } else {
             vowel = false;
@@ -69,19 +82,19 @@ public class BasicAlgorithm implements Numbers {
     public static boolean isVowel3(char letter) { //The third variant
         boolean vowel;
         switch (letter) {
-            case 'a':
+            case A:
                 vowel = true;
                 break;
-            case 'e':
+            case E:
                 vowel = true;
                 break;
-            case 'i':
+            case I:
                 vowel = true;
                 break;
-            case 'o':
+            case O:
                 vowel = true;
                 break;
-            case 'u':
+            case U:
                 vowel = true;
                 break;
             default:
@@ -117,19 +130,19 @@ public class BasicAlgorithm implements Numbers {
 
     public static boolean isVowel4(char letter) { //The fourth variant
         boolean vowel = false;
-        if (letter == 'a') {
+        if (letter == A) {
             vowel = true;
         }
-        if (letter == 'e') {
+        if (letter == E) {
             vowel = true;
         }
-        if (letter == 'i') {
+        if (letter == I) {
             vowel = true;
         }
-        if (letter == 'o') {
+        if (letter == O) {
             vowel = true;
         }
-        if (letter == 'u') {
+        if (letter == U) {
             vowel = true;
         }
         return vowel;
@@ -142,7 +155,7 @@ public class BasicAlgorithm implements Numbers {
     }
 
     public static boolean isVowel6(char letter) { //The sixth variant
-        char[] vowels = {'a', 'e', 'i', 'o', 'u'};
+        char[] vowels = {A, E, I, O, U};
         boolean vowel = false;
         for (char c : vowels) {
             if (c == letter) {
@@ -156,40 +169,38 @@ public class BasicAlgorithm implements Numbers {
     //Shows the mood of person by random number
     public static String moodSensor() {
         Random random = new Random(System.currentTimeMillis());
-        switch (random.nextInt(10)) {
+        switch (random.nextInt(8)) {
             case 0:
-                return ":)";
+                return BEST;
             case 1:
-                return ":|";
+                return GOOD;
             case 2:
-                return ":(";
+                return BAD;
             case 3:
-                return ":O";
+                return CONFUSED;
             case 4:
-                return "C:";
+                return KISS;
             case 5:
-                return ":C";
+                return POKERFACE;
             case 6:
-                return ";)";
+                return SURPRISE;
             case 7:
-                return ":*";
-            case 8:
-                return ":@";
-            case 9:
-                return "xD";
+                return XD;
             default:
-                return "no mood detected...";
+                return NO_MOOD;
         }
     }
 
     //Exercise 4
     //Shows the next day of entered data
     public static String nextDate(int day, int month, int year) {
-        if (month == 12 && day == 31) {
+        if (month == December.getNumber() && day == 31) {
             return "01.01." + ++year; //Change of the year
-        } else if ((((year % 4 == 0 && day == 29) || day == 28) && month == 2)
-                || (day == 31 && (month == 1 || month == 3 || month == 5 || month == 7 || month == 8 || month == 10))
-                || (day == 30 && (month == 2 || month == 4 || month == 6 || month == 9 || month == 11))) {
+        } else if ((((year % 4 == 0 && day == 29) || day == 28) && month == February.getNumber())
+                || (day == 31 && (month == January.getNumber() || month == March.getNumber() || month == May.getNumber()
+                || month == July.getNumber() || month == August.getNumber() || month == October.getNumber()))
+                || (day == 30 && (month == April.getNumber() || month == June.getNumber()
+                || month == September.getNumber() || month == November.getNumber()))) {
             return "01." + (++month < 10 ? "0" + month : month) + "." + year; //Change of the month
         } else {
             return (++day < 10 ? "0" + day : day) + "." + (month < 10 ? "0" + month : month) + "." + year; //Change of the day
@@ -198,7 +209,8 @@ public class BasicAlgorithm implements Numbers {
 
     //Exercise 5
     //Convert numeral number to string pronouns
-    public static String intToString(int number) {
+    public static String intToString(final int enteredNumber) {
+        int number = enteredNumber;
         String stringNum = "";
         switch ((number / 100) % 10) {
             case 1:
