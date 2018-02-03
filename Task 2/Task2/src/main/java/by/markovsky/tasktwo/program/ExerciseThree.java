@@ -7,8 +7,10 @@ import by.markovsky.tasktwo.algorithm.ConditionAlgorithm;
  */
 public class ExerciseThree {
 
+    public static final int MOOD_QUANTITY = 8;
+
     public static void main(String[] args) {
-        System.out.println("Your mood is " + ConditionAlgorithm.moodSensor());
+        System.out.println("Your mood is " + ConditionAlgorithm.moodSensor(MOOD_QUANTITY));
     }
 
 }

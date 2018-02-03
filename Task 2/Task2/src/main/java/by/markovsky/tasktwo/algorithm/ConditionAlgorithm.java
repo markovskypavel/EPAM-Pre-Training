@@ -167,9 +167,9 @@ public class ConditionAlgorithm {
 
     //Exercise 3
     //Shows the mood of person by random number
-    public static String moodSensor() {
+    public static String moodSensor(int mood) {
         Random random = new Random(System.currentTimeMillis());
-        switch (random.nextInt(8)) {
+        switch (random.nextInt(mood)) {
             case 0:
                 return BEST;
             case 1:
