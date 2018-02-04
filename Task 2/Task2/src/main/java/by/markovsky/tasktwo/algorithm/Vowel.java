@@ -8,7 +8,7 @@ public interface Vowel {
     char A = 'a';
     char I = 'i';
     char U = 'u';
-    char E = 'E';
+    char E = 'e';
     char O = 'o';
 
 }
