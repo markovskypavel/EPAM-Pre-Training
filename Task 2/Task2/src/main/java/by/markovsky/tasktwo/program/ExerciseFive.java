@@ -31,7 +31,7 @@ public class ExerciseFive {
     public static final String EIGHTEEN = "Eighteen";
     public static final String NINETEEN = "Nineteen";
 
-    public static final String TEN = "Ten ";
+    public static final String TEN = "Ten";
     public static final String TWENTY = "Twenty ";
     public static final String THIRTY = "Thirty ";
     public static final String FOURTY = "Fourty ";
