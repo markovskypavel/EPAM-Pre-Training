@@ -1,16 +1,15 @@
-package by.markovsky.tasktwo.program;
+package by.markovsky.tasktwo.exercisefive.model;
 
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStreamReader;
 
 /**
- * Created by Pavel Markovsky on 30.01.2018.
+ * Created by Pavel Markovsky on 05.02.2018.
  */
-public class ExerciseFive {
+public class IntConverter {
 
     public static final int MIN_NUMBER = 0;
     public static final int MAX_NUMBER = 999;
+
     public static final String ONE = "One";
     public static final String TWO = "Two";
     public static final String THREE = "Three";
@@ -43,26 +42,11 @@ public class ExerciseFive {
 
     public static final String HUNDRED = " Hundred and ";
 
-    public static void main(String[] args) {
-        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
-        try {
-            System.out.print("Enter your number: ");
-            int number = Integer.parseInt(reader.readLine());
-            if (number <= MIN_NUMBER || number > MAX_NUMBER) {
-                throw new Exception();
-            }
-            System.out.println("Your number is " + number + " (" + intToString(number) + ")");
-        } catch (IOException ioe) {
-            ioe.printStackTrace();
-        } catch (NumberFormatException nfe) {
-            System.err.println("Wrong number format.");
-        } catch (Exception e) {
-            System.err.println("Out of the range. The number should be between 1 and 999.");
-        }
-    }
-
     //Convert numeral number to string pronouns
-    public static String intToString(final int enteredNumber) {
+    public static String intToString(int enteredNumber) throws IOException {
+        if (enteredNumber <= MIN_NUMBER || enteredNumber > MAX_NUMBER) {
+            throw new IOException();
+        }
         int number = enteredNumber;
         String stringNum = "";
         switch ((number / 100) % 10) {
@@ -93,37 +77,44 @@ public class ExerciseFive {
             case 9:
                 stringNum += NINE + HUNDRED;
                 break;
-            default:
-                break;
         }
 
         switch (number % 100) {
+            case 10:
+                stringNum += TEN;
+                break;
             case 11:
-                return stringNum + ELEVEN;
+                stringNum += ELEVEN;
+                break;
             case 12:
-                return stringNum + TWELVE;
+                stringNum += TWELVE;
+                break;
             case 13:
-                return stringNum + THIRTEEN;
+                stringNum += THIRTEEN;
+                break;
             case 14:
-                return stringNum + FOURTEEN;
+                stringNum += FOURTEEN;
+                break;
             case 15:
-                return stringNum + FIFTEEN;
+                stringNum += FIFTEEN;
+                break;
             case 16:
-                return stringNum + SIXTEEN;
+                stringNum += SIXTEEN;
+                break;
             case 17:
-                return stringNum + SEVENTEEN;
+                stringNum += SEVENTEEN;
+                break;
             case 18:
-                return stringNum + EIGHTEEN;
+                stringNum += EIGHTEEN;
+                break;
             case 19:
-                return stringNum + NINETEEN;
-            default:
+                stringNum += NINETEEN;
                 break;
         }
 
         switch ((number / 10) % 10) {
             case 1:
-                stringNum += TEN;
-                break;
+                return stringNum;
             case 2:
                 stringNum += TWENTY;
                 break;
@@ -148,32 +139,39 @@ public class ExerciseFive {
             case 9:
                 stringNum += NINETY;
                 break;
-            default:
-                break;
         }
 
         switch (number % 10) {
             case 1:
-                return stringNum + ONE;
+                stringNum += ONE;
+                break;
             case 2:
-                return stringNum + TWO;
+                stringNum += TWO;
+                break;
             case 3:
-                return stringNum + THREE;
+                stringNum += THREE;
+                break;
             case 4:
-                return stringNum + FOUR;
+                stringNum += FOUR;
+                break;
             case 5:
-                return stringNum + FIVE;
+                stringNum += FIVE;
+                break;
             case 6:
-                return stringNum + SIX;
+                stringNum += SIX;
+                break;
             case 7:
-                return stringNum + SEVEN;
+                stringNum += SEVEN;
+                break;
             case 8:
-                return stringNum + EIGHT;
+                stringNum += EIGHT;
+                break;
             case 9:
-                return stringNum + NINE;
-            default:
-                return stringNum;
+                stringNum += NINE;
+                break;
         }
+
+        return stringNum;
     }
 
 }
