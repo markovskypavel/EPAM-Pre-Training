@@ -1,12 +1,12 @@
-package by.markovsky.taskthree.controller.program;
+package by.markovsky.taskthree.exercisethree.controller;
 
-import by.markovsky.taskthree.model.algorithm.LoopAlgorithm;
+import by.markovsky.taskthree.exercisethree.model.PerfectNumber;
 import by.markovsky.taskthree.view.View;
 
 /**
  * Created by Pavel Markovsky on 03.02.2018.
  */
-public class ExerciseThreeController {
+public class PerfectNumberController {
 
     public static void main(String[] args) {
         int testNumber1 = 6; //Perfect
@@ -15,15 +15,15 @@ public class ExerciseThreeController {
         int testNumber4 = 8128; //Perfect
         int testNumber5 = 123; //Not perfect
         View.print("Is " + testNumber1 + " perfect number? "
-                + (LoopAlgorithm.isPerfectNumber(testNumber1) ? "Yes" : "No"));
+                + (PerfectNumber.isPerfectNumber(testNumber1) ? "Yes" : "No"));
         View.print("Is " + testNumber2 + " perfect number? "
-                + (LoopAlgorithm.isPerfectNumber(testNumber2) ? "Yes" : "No"));
+                + (PerfectNumber.isPerfectNumber(testNumber2) ? "Yes" : "No"));
         View.print("Is " + testNumber3 + " perfect number? "
-                + (LoopAlgorithm.isPerfectNumber(testNumber3) ? "Yes" : "No"));
+                + (PerfectNumber.isPerfectNumber(testNumber3) ? "Yes" : "No"));
         View.print("Is " + testNumber4 + " perfect number? "
-                + (LoopAlgorithm.isPerfectNumber(testNumber4) ? "Yes" : "No"));
+                + (PerfectNumber.isPerfectNumber(testNumber4) ? "Yes" : "No"));
         View.print("Is " + testNumber5 + " perfect number? "
-                + (LoopAlgorithm.isPerfectNumber(testNumber5) ? "Yes" : "No"));
+                + (PerfectNumber.isPerfectNumber(testNumber5) ? "Yes" : "No"));
     }
 
 }

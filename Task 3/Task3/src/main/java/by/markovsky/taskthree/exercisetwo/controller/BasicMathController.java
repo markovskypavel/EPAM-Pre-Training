@@ -1,16 +1,16 @@
-package by.markovsky.taskthree.controller.program;
+package by.markovsky.taskthree.exercisetwo.controller;
 
 import by.markovsky.taskthree.view.View;
 
-import static by.markovsky.taskthree.model.algorithm.LoopAlgorithm.*;
+import static by.markovsky.taskthree.exercisetwo.model.BasicMath.*;
 
 /**
  * Created by Pavel Markovsky on 03.02.2018.
  */
-public class ExerciseTwoController {
+public class BasicMathController {
 
     public static void main(String[] args) {
-        int testNumber1 = 12_556_332;
+        int testNumber1 = 120_556_332;
         int testNumber2 = 4004;
         int testNumber3 = 23;
         int testNumber4 = 24;
