@@ -7,6 +7,7 @@ public class BasicMath {
 
     public static final int NOT_NUMERAL = -1;
     public static final int FIRST_SIMPLE_NUMBER = 2;
+    public static final int REPEAT = 1;
 
     //Part 1: Find the biggest numeral of natural number
     public static int findBiggestNumeral(final int enteredNumber) {
@@ -85,9 +86,9 @@ public class BasicMath {
         int number = enteredNumber;
         int diffNumerals = 0;
         for (int checkNumeral = number; checkNumeral != 0; checkNumeral /= 10) {
-            int repeats = countNumeralRepeats(enteredNumber, checkNumeral % 10);
-            if (repeats >= 1)
+            if (countNumeralRepeats(checkNumeral, checkNumeral % 10) == REPEAT) {
                 diffNumerals++;
+            }
         }
         return diffNumerals;
     }
