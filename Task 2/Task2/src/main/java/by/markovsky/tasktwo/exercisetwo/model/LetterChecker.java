@@ -19,7 +19,7 @@ public class LetterChecker {
             throw new LetterException("Letter of english alphabet wasn't entered.");
         }
         char letter = Character.toLowerCase(enteredLetter);
-        return (letter == 'a' || letter == 'e' || letter == 'i' || letter == 'o' || letter == 'u' || letter == 'y');
+        return letter == 'a' || letter == 'e' || letter == 'i' || letter == 'o' || letter == 'u' || letter == 'y';
     }
 
     //The second variant
