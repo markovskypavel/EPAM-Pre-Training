@@ -1,8 +1,7 @@
 package by.markovsky.tasktwo.exercisefive.controller;
 
+import by.markovsky.tasktwo.exception.RangeException;
 import by.markovsky.tasktwo.view.View;
-
-import java.io.IOException;
 
 import static by.markovsky.tasktwo.exercisefive.model.IntConverter.intToString;
 
@@ -23,8 +22,8 @@ public class IntConverterController {
             View.print("Your number is " + number3 + " (" + intToString(number3) + ")");
             View.print("Your number is " + number4 + " (" + intToString(number4) + ")");
             View.print("Your number is " + number5 + " (" + intToString(number5) + ")");
-        } catch (IOException ioe) {
-            View.printError("Out of the range. The number should be between 1 and 999.");
+        } catch (RangeException re) {
+            View.printError(re.getMessage());
         }
     }
 

@@ -1,5 +1,6 @@
 package by.markovsky.tasktwo.exercisetwo.controller;
 
+import by.markovsky.tasktwo.exception.LetterException;
 import by.markovsky.tasktwo.view.View;
 
 import java.io.IOException;
@@ -22,8 +23,8 @@ public class LetterCheckerController {
                     + " (" + (isVowel2(letter2) ? "vowel" : "consonant") + ")");
             View.print("Your letter is " + letter3
                     + " (" + (isVowel3(letter3) ? "vowel" : "consonant") + ")");
-        } catch (IOException ioe) {
-            View.printError("Letter of english alphabet wasn't entered.");
+        } catch (LetterException le) {
+            View.printError(le.getMessage());
         }
     }
 

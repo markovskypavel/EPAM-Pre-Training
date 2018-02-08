@@ -1,6 +1,6 @@
 package by.markovsky.tasktwo.exercisefive.model;
 
-import java.io.IOException;
+import by.markovsky.tasktwo.exception.RangeException;
 
 /**
  * Created by Pavel Markovsky on 05.02.2018.
@@ -43,9 +43,9 @@ public class IntConverter {
     public static final String HUNDRED = " Hundred and ";
 
     //Convert numeral number to string pronouns
-    public static String intToString(int enteredNumber) throws IOException {
+    public static String intToString(int enteredNumber) throws RangeException {
         if (enteredNumber <= MIN_NUMBER || enteredNumber > MAX_NUMBER) {
-            throw new IOException();
+            throw new RangeException("Out of the range. The number should be between 1 and 999.");
         }
         int number = enteredNumber;
         String stringNum = "";

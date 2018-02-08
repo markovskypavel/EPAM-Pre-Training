@@ -1,6 +1,7 @@
 package by.markovsky.tasktwo.exercisetwo.model;
 
-import java.io.IOException;
+import by.markovsky.tasktwo.exception.LetterException;
+
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -11,20 +12,20 @@ public class LetterChecker {
 
     public static final String VOWELS = "aeiuoyAEIUOY";
 
-    //Check if the letter is vowel or consonant (6 variants)
+    //Check if the letter is vowel or consonant (5 variants)
     //The first variant
-    public static boolean isVowel1(char enteredLetter) throws IOException {
+    public static boolean isVowel1(char enteredLetter) throws LetterException {
         if (!(enteredLetter >= 'A' && enteredLetter <= 'Z') && !(enteredLetter >= 'a' && enteredLetter <= 'z')) {
-            throw new IOException();
+            throw new LetterException("Letter of english alphabet wasn't entered.");
         }
         char letter = Character.toLowerCase(enteredLetter);
         return (letter == 'a' || letter == 'e' || letter == 'i' || letter == 'o' || letter == 'u' || letter == 'y');
     }
 
     //The second variant
-    public static boolean isVowel2(char enteredLetter) throws IOException {
+    public static boolean isVowel2(char enteredLetter) throws LetterException {
         if (!(enteredLetter >= 'A' && enteredLetter <= 'Z') && !(enteredLetter >= 'a' && enteredLetter <= 'z')) {
-            throw new IOException();
+            throw new LetterException("Letter of english alphabet wasn't entered.");
         }
         Pattern p = Pattern.compile("[aeiouyAEIOUY]");
         Matcher m = p.matcher(String.valueOf(enteredLetter));
@@ -32,17 +33,17 @@ public class LetterChecker {
     }
 
     //The third variant
-    public static boolean isVowel3(char enteredLetter) throws IOException {
+    public static boolean isVowel3(char enteredLetter) throws LetterException {
         if (!(enteredLetter >= 'A' && enteredLetter <= 'Z') && !(enteredLetter >= 'a' && enteredLetter <= 'z')) {
-            throw new IOException();
+            throw new LetterException("Letter of english alphabet wasn't entered.");
         }
         return VOWELS.contains(Character.toString(enteredLetter));
     }
 
     //The fourth variant
-    public static boolean isVowel4(char enteredLetter) throws IOException {
+    public static boolean isVowel4(char enteredLetter) throws LetterException {
         if (!(enteredLetter >= 'A' && enteredLetter <= 'Z') && !(enteredLetter >= 'a' && enteredLetter <= 'z')) {
-            throw new IOException();
+            throw new LetterException("Letter of english alphabet wasn't entered.");
         }
         switch (Character.toLowerCase(enteredLetter)) {
             case 'a':
@@ -58,9 +59,9 @@ public class LetterChecker {
 
     //ADDITIONAL VARIANTS (NOT PROFITABLE)
     //The fifth variant (alternative of isVowel1)
-    public static boolean isVowel5(char enteredLetter) throws IOException {
+    public static boolean isVowel5(char enteredLetter) throws LetterException {
         if (!(enteredLetter >= 'A' && enteredLetter <= 'Z') && !(enteredLetter >= 'a' && enteredLetter <= 'z')) {
-            throw new IOException();
+            throw new LetterException("Letter of english alphabet wasn't entered.");
         }
         boolean vowel;
         char letter = Character.toLowerCase(enteredLetter);
@@ -78,34 +79,6 @@ public class LetterChecker {
             vowel = true;
         } else {
             vowel = false;
-        }
-        return vowel;
-    }
-
-    //The sixth variant (alternative of isVowel1)
-    public static boolean isVowel6(char enteredLetter) throws IOException {
-        if (!(enteredLetter >= 'A' && enteredLetter <= 'Z') && !(enteredLetter >= 'a' && enteredLetter <= 'z')) {
-            throw new IOException();
-        }
-        boolean vowel = false;
-        char letter = Character.toLowerCase(enteredLetter);
-        if (letter == 'a') {
-            vowel = true;
-        }
-        if (letter == 'e') {
-            vowel = true;
-        }
-        if (letter == 'i') {
-            vowel = true;
-        }
-        if (letter == 'o') {
-            vowel = true;
-        }
-        if (letter == 'u') {
-            vowel = true;
-        }
-        if (letter == 'y') {
-            vowel = true;
         }
         return vowel;
     }

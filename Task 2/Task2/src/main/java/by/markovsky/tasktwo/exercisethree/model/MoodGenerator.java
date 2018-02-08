@@ -16,10 +16,11 @@ public class MoodGenerator {
     public static final String POKERFACE = ":|";
     public static final String SURPRISE = ":O";
     public static final String BEST = "C:";
+    public static final String NO_MOOD = "no mood detected...";
 
     //Shows the mood of person by random number
     public static String predictMood() {
-        String currMood = "";
+        String currMood;
         switch (new Random(System.currentTimeMillis()).nextInt(MOOD_QUANTITY)) {
             case 0:
                 currMood = BEST;
@@ -44,6 +45,9 @@ public class MoodGenerator {
                 break;
             case 7:
                 currMood = XD;
+                break;
+            default:
+                currMood = NO_MOOD;
                 break;
         }
         return currMood;
