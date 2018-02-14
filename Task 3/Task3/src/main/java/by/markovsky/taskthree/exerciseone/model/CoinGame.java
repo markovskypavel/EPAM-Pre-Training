@@ -9,15 +9,12 @@ import java.util.Random;
  */
 public class CoinGame {
 
-    public static final int COUNTING_START = 0;
-    public static final int MIN_TRY = 0;
-
     //Count how many times heads or tails dropped
     public static int countOneSide(int time) throws TryException {
-        if (time < MIN_TRY) {
+        if (time < 0) {
             throw new TryException("The quantity of tries cannot be less than 0.");
         }
-        int oneSide = COUNTING_START;
+        int oneSide = 0;
         Random random = new Random();
         for (int i = 0; i < time; i++) {
             if (random.nextBoolean()) {

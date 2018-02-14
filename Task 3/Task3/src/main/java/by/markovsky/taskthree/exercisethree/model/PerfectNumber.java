@@ -8,14 +8,13 @@ import by.markovsky.taskthree.exception.NumberException;
 public class PerfectNumber {
 
     public static final int MIN_NATURAL_DIVIDER = 1;
-    public static final int SUM_START = 0;
 
     //Count sum of number's dividers
     public static int countDividerSum(int number) throws NumberException {
         if (number < MIN_NATURAL_DIVIDER) {
             throw new NumberException("Number cannot be less than 1.");
         }
-        int dividerSum = SUM_START;
+        int dividerSum = 0;
         for (int divider = MIN_NATURAL_DIVIDER; number != divider; divider++) {
             if (number % divider == 0) {
                 dividerSum += divider;

@@ -8,7 +8,6 @@ import by.markovsky.taskthree.exception.NumberException;
 public class BasicMath {
 
     public static final int NOT_NUMERAL = -1;
-    public static final int MIN_NUMERAL = 0;
     public static final int FIRST_SIMPLE_NUMBER = 2;
     public static final int REPEAT = 1;
 
@@ -54,7 +53,7 @@ public class BasicMath {
 
     //Part 4: Find all simple dividers of natural number
     public static String findAllSimpleDividers(int number) throws NumberException {
-        if (number < MIN_NUMERAL) {
+        if (number < 0) {
             throw new NumberException("Number cannot be less than 0.");
         }
         String simpleDividers = "";
@@ -68,7 +67,7 @@ public class BasicMath {
 
     //Part 5: Find the biggest divider and the smallest multiple of 2 numbers
     public static int findBiggestDivider(final int enteredNumber1, final int enteredNumber2) throws NumberException {
-        if (enteredNumber1 <= MIN_NUMERAL || enteredNumber1 <= MIN_NUMERAL) {
+        if (enteredNumber1 <= 0 || enteredNumber2 <= 0) {
             throw new NumberException("Numbers cannot be less than 0 or equal 0.");
         }
         int number1 = enteredNumber1;
