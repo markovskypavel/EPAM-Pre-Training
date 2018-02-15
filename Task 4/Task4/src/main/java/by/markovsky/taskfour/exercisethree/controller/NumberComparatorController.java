@@ -1,5 +1,6 @@
 package by.markovsky.taskfour.exercisethree.controller;
 
+import by.markovsky.taskfour.exception.NumberException;
 import by.markovsky.taskfour.exercisethree.model.NumberComparator;
 import by.markovsky.taskfour.view.View;
 
@@ -9,9 +10,14 @@ import by.markovsky.taskfour.view.View;
 public class NumberComparatorController {
 
     public static void main(String[] args) {
-        int N = 12345;
-        int S = 15;
-        View.print("equals(" + N + "," + S + ") = " + NumberComparator.equals(N, S));
+        int number1 = 1234567;
+        int number2 = 28;
+        try {
+            View.print("equalsRecursion(" + number1 + "," + number2 + ") = " + NumberComparator.equalsRecursion(number1, number2)
+                    + "\nequalsLoop(" + number1 + "," + number2 + ") = " + NumberComparator.equalsLoop(number1, number2));
+        } catch (NumberException ne) {
+            View.printError(ne.getMessage());
+        }
     }
 
 }

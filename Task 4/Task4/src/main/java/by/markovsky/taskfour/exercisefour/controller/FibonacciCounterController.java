@@ -9,8 +9,9 @@ import by.markovsky.taskfour.view.View;
 public class FibonacciCounterController {
 
     public static void main(String[] args) {
-        int number = 12;
-        View.print("Fibonacci number (" + number + ") = " + FibonacciCounter.findFibonacciNumber(number));
+        int index = 8; //Stub
+        View.print("Fibonacci number with index " + index + " = " + FibonacciCounter.findFibonacciNumberRecursion(index) + " (recursion)\n"
+                + "Fibonacci number with index " + index + " = " + FibonacciCounter.findFibonacciNumberLoop(index) + " (loop)");
     }
 
 }

@@ -1,5 +1,6 @@
 package by.markovsky.taskfour.exercisetwo.controller;
 
+import by.markovsky.taskfour.exception.NumberException;
 import by.markovsky.taskfour.exercisetwo.model.PowNumber;
 import by.markovsky.taskfour.view.View;
 
@@ -9,9 +10,14 @@ import by.markovsky.taskfour.view.View;
 public class PowNumberController {
 
     public static void main(String[] args) {
-        int number = 12;
-        int degree = 2;
-        View.print(number + "^" + degree + "=" + PowNumber.powNumber(number, degree));
+        double number = 4.;
+        int degree = -2;
+        try {
+            View.print(number + "^(" + degree + ") = " + PowNumber.powNumberRecursion(number, degree) + " (recursion)\n"
+                    + number + "^(" + degree + ") = " + PowNumber.powNumberLoop(number, degree) + " (loop)");
+        } catch (NumberException ne) {
+            View.printError(ne.getMessage());
+        }
     }
 
 }
