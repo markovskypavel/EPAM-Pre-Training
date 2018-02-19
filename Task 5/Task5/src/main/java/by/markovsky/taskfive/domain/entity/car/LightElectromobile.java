@@ -11,16 +11,16 @@ public class LightElectromobile extends Automobile {
     public LightElectromobile() {
         electricEngine = new ElectricEngine();
     }
-    public LightElectromobile(String model, String color, int seats,
+    public LightElectromobile(String model, String color, int price,
                               int wheelQuantity, int length,
                               boolean solarRoof,
                               int power, int torque, int batteryCapacity) {
-        super(model, color, seats, wheelQuantity, length);
+        super(model, color, price, wheelQuantity, length);
         this.solarRoof = solarRoof;
         this.electricEngine = new ElectricEngine(power, torque, batteryCapacity);
     }
     public LightElectromobile(LightElectromobile lightElectromobile) {
-        this(lightElectromobile.model, lightElectromobile.color, lightElectromobile.seats,
+        this(lightElectromobile.model, lightElectromobile.color, lightElectromobile.price,
                 lightElectromobile.getChassis().getWheelQuantity(), lightElectromobile.getChassis().getLength(),
                 lightElectromobile.solarRoof,
                 lightElectromobile.getElectricEngine().getPower(), lightElectromobile.getElectricEngine().getTorque(), lightElectromobile.getElectricEngine().getBatteryCapacity());
@@ -44,7 +44,8 @@ public class LightElectromobile extends Automobile {
 
     @Override
     public String move() {
-        return electricEngine.start() + "\ne-Car is moving.\n" + electricEngine.stop();
+        Startable starter = electricEngine;
+        return starter.start() + " -> e-Car is moving -> " + starter.stop();
     }
 
     @Override
@@ -67,7 +68,7 @@ public class LightElectromobile extends Automobile {
     }
     @Override
     public String toString() {
-        return "LightElectromobile{" +
+        return "\nLightElectromobile{" +
                 "solarRoof=" + solarRoof +
                 ", electricEngine=" + electricEngine +
                 '}';

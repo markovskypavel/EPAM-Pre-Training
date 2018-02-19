@@ -1,5 +1,6 @@
 package by.markovsky.taskfive.application.model;
 
+import by.markovsky.taskfive.domain.entity.car.Automobile;
 import by.markovsky.taskfive.domain.entity.showroom.AutoShowroom;
 
 /**
@@ -7,18 +8,15 @@ import by.markovsky.taskfive.domain.entity.showroom.AutoShowroom;
  */
 public class ShowroomManagement {
 
+    private static ShowroomManagement showroomManagement = new ShowroomManagement();
+    private ShowroomManagement() {
+    }
+    public static ShowroomManagement getShowroomManagement(){
+        return showroomManagement;
+    }
+
     private AutoShowroom autoShowroom;
     private String director;
-
-    public ShowroomManagement() {
-    }
-    public ShowroomManagement(AutoShowroom autoShowroom, String director) {
-        this.autoShowroom = autoShowroom;
-        this.director = director;
-    }
-    public ShowroomManagement(ShowroomManagement showroomManagement) {
-        this(showroomManagement.autoShowroom, showroomManagement.director);
-    }
 
     //Setters
     public void setAutoShowroom(AutoShowroom autoShowroom) {
@@ -34,6 +32,23 @@ public class ShowroomManagement {
     }
     public String getDirector() {
         return director;
+    }
+
+    //Work with showroom
+    public boolean addNewAutomobile(Automobile automobile){
+        autoShowroom.getAutomobiles().add(automobile);
+        return true;
+    }
+    public boolean removeAutomobile(String modelName){
+        boolean deleted = false;
+        for(Automobile automobile : autoShowroom.getAutomobiles()){
+            if(automobile.getModel().equals(modelName)){
+                autoShowroom.getAutomobiles().remove(automobile);
+                deleted = true;
+                break;
+            }
+        }
+        return deleted;
     }
 
     @Override

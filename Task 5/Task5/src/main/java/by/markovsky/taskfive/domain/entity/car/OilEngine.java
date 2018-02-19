@@ -5,6 +5,9 @@ package by.markovsky.taskfive.domain.entity.car;
  */
 public class OilEngine extends Engine {
 
+    public static final String START_MESSAGE = "Wroom-wroom! Oil engine started";
+    public static final String STOP_MESSAGE = "Oil engine stopped";
+
     private String oilType;
     private double volume;
 
@@ -37,11 +40,11 @@ public class OilEngine extends Engine {
 
     @Override
     public String start() {
-        return "Wroom-wroom! Oil engine started.";
+        return START_MESSAGE;
     }
     @Override
     public String stop() {
-        return "Oil engine stopped.";
+        return STOP_MESSAGE;
     }
 
     @Override

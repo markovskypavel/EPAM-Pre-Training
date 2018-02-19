@@ -8,6 +8,7 @@ import java.util.*;
 public class CustomArrayList<E> implements List<E> {
 
     private static final int STOCK_SIZE = 0;
+    private static final int EMPTY_SIZE = 0;
 
     private Object[] arrayList;
     private int size;
@@ -23,6 +24,9 @@ public class CustomArrayList<E> implements List<E> {
         }
         size = element.length;
     }
+    public CustomArrayList(CustomArrayList<E> customArrayList) {
+        this((E)customArrayList.arrayList);
+    }
 
     @Override
     public int size() {
@@ -31,7 +35,7 @@ public class CustomArrayList<E> implements List<E> {
 
     @Override
     public boolean isEmpty() {
-        return size == STOCK_SIZE;
+        return size == EMPTY_SIZE;
     }
 
     @Override
@@ -45,7 +49,6 @@ public class CustomArrayList<E> implements List<E> {
         return true;
     }
 
-    @SuppressWarnings("unchecked")
     public boolean addSeveral(E... element) {
         Object[] tempArray = arrayList;
         arrayList = new Object[size + element.length];
@@ -61,7 +64,7 @@ public class CustomArrayList<E> implements List<E> {
 
     @Override
     public E remove(int index) {
-        if (index >= size || index < STOCK_SIZE) return null;
+        if (index >= size || index < EMPTY_SIZE) return null;
 
         Object[] tempArray = arrayList;
         E tempObject = null;
@@ -69,8 +72,9 @@ public class CustomArrayList<E> implements List<E> {
         for (int i = 0, j = 0; i < tempArray.length; i++) {
             if (i != index) {
                 arrayList[j++] = tempArray[i];
+            } else {
+                tempObject = (E) tempArray[i];
             }
-            tempObject = (E) tempArray[i];
         }
         return tempObject;
     }
@@ -97,7 +101,7 @@ public class CustomArrayList<E> implements List<E> {
 
     @Override
     public E get(int index) {
-        if (index >= size || index < STOCK_SIZE) return null;
+        if (index >= size || index < EMPTY_SIZE) return null;
 
         E tempObject = null;
         for (int i = 0; i < arrayList.length; i++) {
@@ -110,19 +114,30 @@ public class CustomArrayList<E> implements List<E> {
     }
 
     @Override
-    public void add(int index, E element) {
-        if (index < STOCK_SIZE) {
-            return;
-        } else if (index == size) {
-            add(element);
-        } else if (index > size) {
-            arrayList = new Object[index + 1];
-            ++size;
-        }
+    public E set(int index, E element) {
+        if (index < EMPTY_SIZE || index >= size) return null;
+        E tempObj = null;
         for (int i = 0; i < arrayList.length; i++) {
             if (i == index) {
+                tempObj = (E) arrayList[i];
                 arrayList[i] = element;
                 break;
+            }
+        }
+        return tempObj;
+    }
+
+    @Override
+    public void add(int index, E element) {
+        if(index < EMPTY_SIZE || index > size) index = size;
+
+        Object[] tempArray = arrayList;
+        arrayList = new Object[++size];
+        for (int i = 0, j = 0; i < arrayList.length; i++) {
+            if (i != index) {
+                arrayList[i]=tempArray[j++];
+            }else{
+                arrayList[i] = element;
             }
         }
     }
@@ -136,10 +151,76 @@ public class CustomArrayList<E> implements List<E> {
     }
 
     @Override
+    public int lastIndexOf(Object o) {
+        int lastIndex = -1;
+        for (int i = 0; i < arrayList.length; i++) {
+            if(o.equals(arrayList[i])) {
+                lastIndex = i;
+            }
+        }
+        return lastIndex;
+    }
+
+    public String allIndex(Object o) {
+        String index = "";
+        for (int i = 0; i < arrayList.length; i++) {
+            if (o.equals(arrayList[i])) {
+                index += i + " ";
+            }
+        }
+        return index;
+    }
+
+    @Override
+    public boolean contains(Object o) {
+        return indexOf(o) != -1;
+    }
+
+    @Override
+    public Object[] toArray() {
+        return arrayList;
+    }
+
+    @Override
+    public Iterator<E> iterator() {
+        return new Iterator<E>() {
+            private int currentIndex = 0;
+
+            @Override
+            public boolean hasNext() {
+                return currentIndex < arrayList.length && arrayList[currentIndex] != null;
+            }
+
+            @Override
+            public E next() {
+                return (E) arrayList[currentIndex++];
+            }
+
+            //Delete element on current index position
+            @Override
+            public void remove() {
+                if (arrayList[currentIndex] == null) return;
+
+                Object[] tempArray = arrayList;
+                arrayList = new Object[--size];
+                for (int i = 0, j = 0; i < tempArray.length; i++) {
+                    if (i != currentIndex) {
+                        arrayList[j++] = tempArray[i];
+                    }
+                }
+            }
+
+            public int getCurrentIndex(){
+                return currentIndex;
+            }
+        };
+    }
+
+    @Override
     public String toString() {
         return "CustomArrayList{" +
                 "arrayList=" + Arrays.toString(arrayList) +
-                ", size=" + size +
+                ",\nsize=" + size +
                 '}';
     }
     @Override
@@ -150,7 +231,6 @@ public class CustomArrayList<E> implements List<E> {
         CustomArrayList<?> that = (CustomArrayList<?>) o;
 
         if (size != that.size) return false;
-        // Probably incorrect - comparing Object[] arrays with Arrays.equals
         return Arrays.equals(arrayList, that.arrayList);
     }
     @Override
@@ -162,76 +242,44 @@ public class CustomArrayList<E> implements List<E> {
 
 
 
-
-
-    @Override
-    public boolean contains(Object o) {
-        return false;
-    }
-
-    @Override
-    public Iterator<E> iterator() {
-        return null;
-    }
-
-    @Override
-    public Object[] toArray() {
-        return new Object[0];
-    }
-
+    /**
+     THESE OVERRIDED METHODS ARE NOT DESCRIBED!!!
+     */
     @Override
     public <T> T[] toArray(T[] a) {
-        return null;
+        throw new UnsupportedOperationException();
     }
-
     @Override
     public boolean containsAll(Collection<?> c) {
-        return false;
+        throw new UnsupportedOperationException();
     }
-
     @Override
     public boolean addAll(Collection<? extends E> c) {
-        return false;
+        throw new UnsupportedOperationException();
     }
-
     @Override
     public boolean addAll(int index, Collection<? extends E> c) {
-        return false;
+        throw new UnsupportedOperationException();
     }
-
     @Override
     public boolean removeAll(Collection<?> c) {
-        return false;
+        throw new UnsupportedOperationException();
     }
-
     @Override
     public boolean retainAll(Collection<?> c) {
-        return false;
+        throw new UnsupportedOperationException();
     }
-
-    @Override
-    public E set(int index, E element) {
-        return null;
-    }
-
-    @Override
-    public int lastIndexOf(Object o) {
-        return 0;
-    }
-
     @Override
     public ListIterator<E> listIterator() {
-        return null;
+        throw new UnsupportedOperationException();
     }
-
     @Override
     public ListIterator<E> listIterator(int index) {
-        return null;
+        throw new UnsupportedOperationException();
     }
-
     @Override
     public List<E> subList(int fromIndex, int toIndex) {
-        return null;
+        throw new UnsupportedOperationException();
     }
 
 }

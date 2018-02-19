@@ -12,16 +12,16 @@ public class LightAutomobile extends Automobile {
         this.oilEngine = new OilEngine();
         this.shiftBox = new ShiftBox();
     }
-    public LightAutomobile(String model, String color, int seats,
+    public LightAutomobile(String model, String color, int price,
                            int wheelQuantity, int length,
                            int power, int torque, String oilType, double volume,
                            String shiftType, int gears) {
-        super(model, color, seats, wheelQuantity, length);
+        super(model, color, price, wheelQuantity, length);
         this.oilEngine = new OilEngine(power, torque, oilType, volume);
         this.shiftBox = new ShiftBox(shiftType, gears);
     }
     public LightAutomobile(LightAutomobile lightAutomobile) {
-        this(lightAutomobile.model, lightAutomobile.color, lightAutomobile.seats,
+        this(lightAutomobile.model, lightAutomobile.color, lightAutomobile.price,
                 lightAutomobile.getChassis().getWheelQuantity(), lightAutomobile.getChassis().getLength(),
                 lightAutomobile.getOilEngine().getPower(), lightAutomobile.getOilEngine().getTorque(), lightAutomobile.getOilEngine().getOilType(), lightAutomobile.getOilEngine().getVolume(),
                 lightAutomobile.getShiftBox().getShiftType(), lightAutomobile.getShiftBox().getGears());
@@ -45,7 +45,8 @@ public class LightAutomobile extends Automobile {
 
     @Override
     public String move() {
-        return oilEngine.start() + "\nAutomobile is moving.\n" + oilEngine.stop();
+        Startable starter = oilEngine;
+        return starter.start() + " -> Automobile is moving -> " + starter.stop();
     }
 
     @Override
@@ -68,7 +69,7 @@ public class LightAutomobile extends Automobile {
     }
     @Override
     public String toString() {
-        return "LightAutomobile{" +
+        return "\nLightAutomobile{" +
                 "oilEngine=" + oilEngine +
                 ", shiftBox=" + shiftBox +
                 '}';

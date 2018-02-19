@@ -12,13 +12,15 @@ public class AutoShowroom {
     private String name;
 
     public AutoShowroom() {
+        this.automobiles = new CustomArrayList<>();
     }
-    public AutoShowroom(CustomArrayList<Automobile> automobiles, String name) {
-        this.automobiles = automobiles;
+    public AutoShowroom(String name) {
+        this.automobiles = new CustomArrayList<>();
         this.name = name;
     }
     public AutoShowroom(AutoShowroom autoShowroom) {
-        this(autoShowroom.automobiles, autoShowroom.name);
+        this.automobiles = new CustomArrayList<>(autoShowroom.getAutomobiles());
+        this.name = autoShowroom.name;
     }
 
     //Setters

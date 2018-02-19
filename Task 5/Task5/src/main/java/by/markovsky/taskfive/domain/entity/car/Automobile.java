@@ -7,17 +7,17 @@ public abstract class Automobile implements Moveable {
 
     protected String model;
     protected String color;
-    protected int seats;
+    protected int price;
 
     protected Chassis chassis;
 
     public Automobile() {
         this.chassis = new Chassis();
     }
-    public Automobile(String model, String color, int seats, int wheelQuantity, int length) {
+    public Automobile(String model, String color, int price, int wheelQuantity, int length) {
         this.model = model;
         this.color = color;
-        this.seats = seats;
+        this.price = price;
         this.chassis = new Chassis(wheelQuantity, length);
     }
 
@@ -28,8 +28,8 @@ public abstract class Automobile implements Moveable {
     public void setColor(String color) {
         this.color = color;
     }
-    public void setSeats(int seats) {
-        this.seats = seats;
+    public void setPrice(int price) {
+        this.price = price;
     }
     public void setChassis(Chassis chassis) {
         this.chassis = chassis;
@@ -42,8 +42,8 @@ public abstract class Automobile implements Moveable {
     public String getColor() {
         return color;
     }
-    public int getSeats() {
-        return seats;
+    public int getPrice() {
+        return price;
     }
     public Chassis getChassis() {
         return chassis;
@@ -56,7 +56,7 @@ public abstract class Automobile implements Moveable {
 
         Automobile that = (Automobile) o;
 
-        if (seats != that.seats) return false;
+        if (price != that.price) return false;
         if (model != null ? !model.equals(that.model) : that.model != null) return false;
         if (color != null ? !color.equals(that.color) : that.color != null) return false;
         return chassis != null ? chassis.equals(that.chassis) : that.chassis == null;
@@ -65,7 +65,7 @@ public abstract class Automobile implements Moveable {
     public int hashCode() {
         int result = model != null ? model.hashCode() : 0;
         result = 31 * result + (color != null ? color.hashCode() : 0);
-        result = 31 * result + seats;
+        result = 31 * result + price;
         result = 31 * result + (chassis != null ? chassis.hashCode() : 0);
         return result;
     }
@@ -74,7 +74,7 @@ public abstract class Automobile implements Moveable {
         return "Automobile{" +
                 "model='" + model + '\'' +
                 ", color='" + color + '\'' +
-                ", seats=" + seats +
+                ", price=" + price +
                 ", chassis=" + chassis +
                 '}';
     }

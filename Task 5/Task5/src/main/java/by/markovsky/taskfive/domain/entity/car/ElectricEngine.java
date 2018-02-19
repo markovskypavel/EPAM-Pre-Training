@@ -5,6 +5,9 @@ package by.markovsky.taskfive.domain.entity.car;
  */
 public class ElectricEngine extends Engine {
 
+    public static final String START_MESSAGE = "Beep-beep! e-Engine started";
+    public static final String STOP_MESSAGE = "Beep! e-Engine stopped";
+
     private int batteryCapacity;
 
     public ElectricEngine() {
@@ -29,11 +32,11 @@ public class ElectricEngine extends Engine {
 
     @Override
     public String start() {
-        return "Beep-beep! e-Engine started.";
+        return START_MESSAGE;
     }
     @Override
     public String stop() {
-        return "Beep! e-Engine stopped.";
+        return STOP_MESSAGE;
     }
 
     @Override
