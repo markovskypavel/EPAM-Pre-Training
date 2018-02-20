@@ -26,7 +26,7 @@ public class AutoShowroomController {
         showroomManagement.setAutoShowroom(autoShowroom);
 
         try {
-            LightAutomobile automobile = new LightAutomobile("Audi RS6", "White", 215000, 4, 4100, 560, 6000, OilType.BENZIN.getOilName(), 4.0, ShiftBoxType.ASGB.getType(), 6);
+            LightAutomobile automobile = new LightAutomobile("Audi RS6", "White", 215000, 4, 4100, 560, 6000, OilType.BENZIN.name(), 4.0, ShiftBoxType.ASGB.getType(), 6);
             CarValidator.isLightAutomobileValid(automobile);
             showroomManagement.addNewAutomobile(automobile);
 
@@ -38,11 +38,11 @@ public class AutoShowroomController {
             CarValidator.isElectromobileValid(electromobile);
             showroomManagement.addNewAutomobile(electromobile);
 
-            automobile = new LightAutomobile("Audi RS5", "Red", 115000, 4, 3900, 330, 5000, OilType.BENZIN.getOilName(), 4.2, ShiftBoxType.ASGB.getType(), 5);
+            automobile = new LightAutomobile("Audi RS5", "Red", 115000, 4, 3900, 330, 5000, OilType.BENZIN.name(), 4.2, ShiftBoxType.ASGB.getType(), 5);
             CarValidator.isLightAutomobileValid(automobile);
             showroomManagement.addNewAutomobile(automobile);
 
-            automobile = new LightAutomobile("Audi RS4", "Black", 95000, 4, 3700, 290, 4000, OilType.DIESEL.getOilName(), 4.2, ShiftBoxType.RSGB.getType(), 5);
+            automobile = new LightAutomobile("Audi RS4", "Black", 95000, 4, 3700, 290, 4000, OilType.DIESEL.name(), 4.2, ShiftBoxType.RSGB.getType(), 5);
             CarValidator.isLightAutomobileValid(automobile);
             showroomManagement.addNewAutomobile(automobile);
 
@@ -51,13 +51,13 @@ public class AutoShowroomController {
             showroomManagement.removeAutomobile("Audi RS5");
             View.print(showroomManagement.getAutoShowroom().getAutomobiles() + "\n");
 
-            View.print("Price of autopark: " + ShowroomCounter.countAutomobilePrice(showroomManagement.getAutoShowroom().getAutomobiles()) + "\n");
-            View.print("Highest priced auto: " + ShowroomCounter.findHighestPricedAutomobile(showroomManagement.getAutoShowroom().getAutomobiles()) + "\n");
+            View.print("Price of autopark: " + ShowroomCounter.countAutomobilePrice(showroomManagement.getAutoShowroom()) + "\n");
+            View.print("Highest priced auto: " + ShowroomCounter.findHighestPricedAutomobile(showroomManagement.getAutoShowroom()) + "\n");
 
-            View.print("===Electromobiles===\n" + ShowroomSorter.getAllElectromobiles(showroomManagement.getAutoShowroom().getAutomobiles()) + "\n");
-            View.print("===Oil Automobiles===\n" + ShowroomSorter.getAllOilAutomobiles(showroomManagement.getAutoShowroom().getAutomobiles()) + "\n");
+            View.print("===Electromobiles===\n" + ShowroomSorter.getAllElectromobiles(showroomManagement.getAutoShowroom()) + "\n");
+            View.print("===Oil Automobiles===\n" + ShowroomSorter.getAllOilAutomobiles(showroomManagement.getAutoShowroom()) + "\n");
 
-            View.print("===Automobile check===\n" + ShowroomTechnicalSupport.checkAllAutomobile(showroomManagement.getAutoShowroom().getAutomobiles()));
+            View.print("===Automobile check===\n" + ShowroomTechnicalSupport.checkAllAutomobile(showroomManagement.getAutoShowroom()));
         } catch (WrongAutomobileDataException wade) {
             View.printError(wade.getMessage());
         }

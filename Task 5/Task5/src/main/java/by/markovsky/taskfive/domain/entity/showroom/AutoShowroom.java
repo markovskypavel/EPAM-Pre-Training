@@ -1,6 +1,7 @@
 package by.markovsky.taskfive.domain.entity.showroom;
 
 import by.markovsky.taskfive.data.container.CustomArrayList;
+import by.markovsky.taskfive.data.container.CustomList;
 import by.markovsky.taskfive.domain.entity.car.Automobile;
 
 /**
@@ -19,7 +20,7 @@ public class AutoShowroom {
         this.name = name;
     }
     public AutoShowroom(AutoShowroom autoShowroom) {
-        this.automobiles = new CustomArrayList<>(autoShowroom.getAutomobiles());
+        this.automobiles = new CustomArrayList<>(autoShowroom.automobiles);
         this.name = autoShowroom.name;
     }
 
@@ -32,7 +33,7 @@ public class AutoShowroom {
     }
 
     //Getters
-    public CustomArrayList<Automobile> getAutomobiles() {
+    public CustomList<Automobile> getAutomobiles() {
         return automobiles;
     }
     public String getName() {

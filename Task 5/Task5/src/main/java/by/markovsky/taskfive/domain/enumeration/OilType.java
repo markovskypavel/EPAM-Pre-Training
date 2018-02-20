@@ -5,16 +5,6 @@ package by.markovsky.taskfive.domain.enumeration;
  */
 public enum OilType {
 
-    BENZIN("Benzin"), GAS("Gas"), DIESEL("Diesel");
-
-    private String oilName;
-
-    OilType(String oilName) {
-        this.oilName = oilName;
-    }
-
-    public String getOilName() {
-        return oilName;
-    }
+    BENZIN, GAS, DIESEL
 
 }

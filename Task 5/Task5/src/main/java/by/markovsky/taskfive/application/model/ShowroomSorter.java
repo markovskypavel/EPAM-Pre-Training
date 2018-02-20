@@ -4,15 +4,16 @@ import by.markovsky.taskfive.data.container.CustomArrayList;
 import by.markovsky.taskfive.domain.entity.car.Automobile;
 import by.markovsky.taskfive.domain.entity.car.LightAutomobile;
 import by.markovsky.taskfive.domain.entity.car.LightElectromobile;
+import by.markovsky.taskfive.domain.entity.showroom.AutoShowroom;
 
 /**
  * Created by Pavel Markovsky on 19.02.2018.
  */
 public class ShowroomSorter {
 
-    public static CustomArrayList<LightElectromobile> getAllElectromobiles(CustomArrayList<Automobile> automobiles) {
+    public static CustomArrayList<LightElectromobile> getAllElectromobiles(AutoShowroom autoShowroom) {
         CustomArrayList<LightElectromobile> electromobiles = new CustomArrayList<>();
-        for (Automobile automobile : automobiles) {
+        for (Automobile automobile : autoShowroom.getAutomobiles()) {
             if (automobile instanceof LightElectromobile) {
                 electromobiles.add((LightElectromobile) automobile);
             }
@@ -20,9 +21,9 @@ public class ShowroomSorter {
         return electromobiles;
     }
 
-    public static CustomArrayList<LightAutomobile> getAllOilAutomobiles(CustomArrayList<Automobile> automobiles) {
+    public static CustomArrayList<LightAutomobile> getAllOilAutomobiles(AutoShowroom autoShowroom) {
         CustomArrayList<LightAutomobile> lightAutomobiles = new CustomArrayList<>();
-        for (Automobile automobile : automobiles) {
+        for (Automobile automobile : autoShowroom.getAutomobiles()) {
             if (automobile instanceof LightAutomobile) {
                 lightAutomobiles.add((LightAutomobile) automobile);
             }

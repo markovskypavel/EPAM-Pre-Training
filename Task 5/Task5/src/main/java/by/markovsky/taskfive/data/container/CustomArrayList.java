@@ -5,7 +5,7 @@ import java.util.*;
 /**
  * Created by Pavel Markovsky on 17.02.2018.
  */
-public class CustomArrayList<E> implements List<E> {
+public class CustomArrayList<E> implements CustomList<E> {
 
     private static final int STOCK_SIZE = 0;
     private static final int EMPTY_SIZE = 0;
@@ -49,6 +49,7 @@ public class CustomArrayList<E> implements List<E> {
         return true;
     }
 
+    @Override
     public boolean addSeveral(E... element) {
         Object[] tempArray = arrayList;
         arrayList = new Object[size + element.length];
@@ -162,6 +163,7 @@ public class CustomArrayList<E> implements List<E> {
         return lastIndex;
     }
 
+    @Override
     public String allIndexOf(Object o) {
         String index = "";
         for (int i = 0; i < arrayList.length; i++) {
@@ -239,48 +241,6 @@ public class CustomArrayList<E> implements List<E> {
         int result = Arrays.hashCode(arrayList);
         result = 31 * result + size;
         return result;
-    }
-
-
-
-    /**
-     THESE OVERRIDED METHODS ARE NOT DESCRIBED!!!
-     */
-    @Override
-    public <T> T[] toArray(T[] a) {
-        throw new UnsupportedOperationException();
-    }
-    @Override
-    public boolean containsAll(Collection<?> c) {
-        throw new UnsupportedOperationException();
-    }
-    @Override
-    public boolean addAll(Collection<? extends E> c) {
-        throw new UnsupportedOperationException();
-    }
-    @Override
-    public boolean addAll(int index, Collection<? extends E> c) {
-        throw new UnsupportedOperationException();
-    }
-    @Override
-    public boolean removeAll(Collection<?> c) {
-        throw new UnsupportedOperationException();
-    }
-    @Override
-    public boolean retainAll(Collection<?> c) {
-        throw new UnsupportedOperationException();
-    }
-    @Override
-    public ListIterator<E> listIterator() {
-        throw new UnsupportedOperationException();
-    }
-    @Override
-    public ListIterator<E> listIterator(int index) {
-        throw new UnsupportedOperationException();
-    }
-    @Override
-    public List<E> subList(int fromIndex, int toIndex) {
-        throw new UnsupportedOperationException();
     }
 
 }

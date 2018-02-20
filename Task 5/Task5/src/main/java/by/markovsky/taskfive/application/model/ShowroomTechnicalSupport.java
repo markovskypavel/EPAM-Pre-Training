@@ -1,20 +1,19 @@
 package by.markovsky.taskfive.application.model;
 
-import by.markovsky.taskfive.data.container.CustomArrayList;
-import by.markovsky.taskfive.domain.entity.car.Automobile;
 import by.markovsky.taskfive.domain.entity.car.Moveable;
+import by.markovsky.taskfive.domain.entity.showroom.AutoShowroom;
 
 /**
  * Created by Pavel Markovsky on 19.02.2018.
  */
 public class ShowroomTechnicalSupport {
 
-    public static String checkAllAutomobile(CustomArrayList<Automobile> automobiles) {
-        String checkState = "";
-        for (Moveable key : automobiles) {
-            checkState += key.move() + "\n";
+    public static String checkAllAutomobile(AutoShowroom autoShowroom) {
+        StringBuilder checkState = new StringBuilder();
+        for (Moveable key : autoShowroom.getAutomobiles()) {
+            checkState.append(key.move() + "\n");
         }
-        return checkState;
+        return checkState.toString();
     }
 
 }
