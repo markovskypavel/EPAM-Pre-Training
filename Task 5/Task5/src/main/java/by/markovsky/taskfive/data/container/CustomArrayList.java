@@ -116,6 +116,7 @@ public class CustomArrayList<E> implements List<E> {
     @Override
     public E set(int index, E element) {
         if (index < EMPTY_SIZE || index >= size) return null;
+
         E tempObj = null;
         for (int i = 0; i < arrayList.length; i++) {
             if (i == index) {
@@ -161,7 +162,7 @@ public class CustomArrayList<E> implements List<E> {
         return lastIndex;
     }
 
-    public String allIndex(Object o) {
+    public String allIndexOf(Object o) {
         String index = "";
         for (int i = 0; i < arrayList.length; i++) {
             if (o.equals(arrayList[i])) {

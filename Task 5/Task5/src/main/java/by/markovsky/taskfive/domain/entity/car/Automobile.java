@@ -10,6 +10,7 @@ public abstract class Automobile implements Moveable {
     protected int price;
 
     protected Chassis chassis;
+    protected Startable starter; //Interface for engine
 
     public Automobile() {
         this.chassis = new Chassis();

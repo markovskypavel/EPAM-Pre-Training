@@ -10,6 +10,7 @@ public class LightElectromobile extends Automobile {
 
     public LightElectromobile() {
         electricEngine = new ElectricEngine();
+        this.starter = this.electricEngine;
     }
     public LightElectromobile(String model, String color, int price,
                               int wheelQuantity, int length,
@@ -18,6 +19,7 @@ public class LightElectromobile extends Automobile {
         super(model, color, price, wheelQuantity, length);
         this.solarRoof = solarRoof;
         this.electricEngine = new ElectricEngine(power, torque, batteryCapacity);
+        this.starter = this.electricEngine;
     }
     public LightElectromobile(LightElectromobile lightElectromobile) {
         this(lightElectromobile.model, lightElectromobile.color, lightElectromobile.price,

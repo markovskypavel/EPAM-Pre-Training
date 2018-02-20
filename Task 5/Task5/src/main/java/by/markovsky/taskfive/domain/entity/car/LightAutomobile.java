@@ -10,6 +10,7 @@ public class LightAutomobile extends Automobile {
 
     public LightAutomobile() {
         this.oilEngine = new OilEngine();
+        this.starter = this.oilEngine;
         this.shiftBox = new ShiftBox();
     }
     public LightAutomobile(String model, String color, int price,
@@ -18,6 +19,7 @@ public class LightAutomobile extends Automobile {
                            String shiftType, int gears) {
         super(model, color, price, wheelQuantity, length);
         this.oilEngine = new OilEngine(power, torque, oilType, volume);
+        this.starter = this.oilEngine;
         this.shiftBox = new ShiftBox(shiftType, gears);
     }
     public LightAutomobile(LightAutomobile lightAutomobile) {
@@ -45,7 +47,6 @@ public class LightAutomobile extends Automobile {
 
     @Override
     public String move() {
-        Startable starter = oilEngine;
         return starter.start() + " -> Automobile is moving -> " + starter.stop();
     }
 
