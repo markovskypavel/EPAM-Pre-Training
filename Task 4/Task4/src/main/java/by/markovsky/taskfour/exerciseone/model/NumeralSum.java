@@ -8,8 +8,8 @@ import by.markovsky.taskfour.exception.NumberException;
 public class NumeralSum {
 
     //Counts sum of numerals of the number with recursion
-    private static int countNumeralSum(int enteredNumber) {
-        return enteredNumber > 0 ? countNumeralSum(enteredNumber / 10) + enteredNumber % 10 : 0;
+    private static int countNumeralSum(int number) {
+        return number > 0 ? countNumeralSum(number / 10) + number % 10 : 0;
     }
     public static int countNumeralSumRecursion(int enteredNumber) throws NumberException {
         if (enteredNumber < 0) {
@@ -24,9 +24,9 @@ public class NumeralSum {
             throw new NumberException("The number cannot be negative.");
         }
         int number = enteredNumber;
-        int sum = 0;
-        for (; number != 0; number /= 10) {
-            sum += number % 10;
+        int sum = number % 10;
+        while (number != 0) {
+            sum += (number /= 10) % 10;
         }
         return sum;
     }

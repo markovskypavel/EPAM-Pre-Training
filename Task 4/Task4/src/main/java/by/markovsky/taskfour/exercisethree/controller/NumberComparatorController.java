@@ -13,8 +13,8 @@ public class NumberComparatorController {
         int number1 = 1234567;
         int number2 = 28;
         try {
-            View.print("equalsRecursion(" + number1 + "," + number2 + ") = " + NumberComparator.equalsRecursion(number1, number2)
-                    + "\nequalsLoop(" + number1 + "," + number2 + ") = " + NumberComparator.equalsLoop(number1, number2));
+            View.print("equalsRecursion(" + number1 + "," + number2 + ") = " + NumberComparator.isEqualRecursion(number1, number2)
+                    + "\nequalsLoop(" + number1 + "," + number2 + ") = " + NumberComparator.isEqualLoop(number1, number2));
         } catch (NumberException ne) {
             View.printError(ne.getMessage());
         }

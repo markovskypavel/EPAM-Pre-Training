@@ -8,12 +8,12 @@ import by.markovsky.taskfour.exception.NumberException;
 public class PowNumber {
 
     //Pow number with recursion
-    private static double powNumber(double enteredNumber, int degree) {
+    private static double powNumber(double number, int degree) {
         double powedNumber = 1.;
         if (degree > 0) {
-            powedNumber = powNumber(enteredNumber, degree - 1) * enteredNumber;
+            powedNumber = powNumber(number, degree - 1) * number;
         } else if (degree < 0) {
-            powedNumber = powNumber(enteredNumber, degree + 1) / enteredNumber;
+            powedNumber = powNumber(number, degree + 1) / number;
         }
         return powedNumber;
     }
