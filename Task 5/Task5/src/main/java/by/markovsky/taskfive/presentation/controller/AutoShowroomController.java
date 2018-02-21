@@ -5,6 +5,7 @@ import by.markovsky.taskfive.application.model.ShowroomManagement;
 import by.markovsky.taskfive.application.model.ShowroomSorter;
 import by.markovsky.taskfive.application.model.ShowroomTechnicalSupport;
 import by.markovsky.taskfive.application.validation.CarValidator;
+import by.markovsky.taskfive.data.container.CustomArrayList;
 import by.markovsky.taskfive.domain.entity.car.LightAutomobile;
 import by.markovsky.taskfive.domain.entity.car.LightElectromobile;
 import by.markovsky.taskfive.domain.entity.showroom.AutoShowroom;
@@ -54,8 +55,8 @@ public class AutoShowroomController {
             View.print("Price of autopark: " + ShowroomCounter.countAutomobilePrice(showroomManagement.getAutoShowroom()) + "\n");
             View.print("Highest priced auto: " + ShowroomCounter.findHighestPricedAutomobile(showroomManagement.getAutoShowroom()) + "\n");
 
-            View.print("===Electromobiles===\n" + ShowroomSorter.getAllElectromobiles(showroomManagement.getAutoShowroom()) + "\n");
-            View.print("===Oil Automobiles===\n" + ShowroomSorter.getAllOilAutomobiles(showroomManagement.getAutoShowroom()) + "\n");
+            View.print("===Electromobiles===\n" + ShowroomSorter.getAllElectromobiles(showroomManagement.getAutoShowroom(), new CustomArrayList<>()) + "\n");
+            View.print("===Oil Automobiles===\n" + ShowroomSorter.getAllOilAutomobiles(showroomManagement.getAutoShowroom(), new CustomArrayList<>()) + "\n");
 
             View.print("===Automobile check===\n" + ShowroomTechnicalSupport.checkAllAutomobile(showroomManagement.getAutoShowroom()));
         } catch (WrongAutomobileDataException wade) {

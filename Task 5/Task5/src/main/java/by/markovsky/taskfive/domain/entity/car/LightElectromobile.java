@@ -6,11 +6,10 @@ package by.markovsky.taskfive.domain.entity.car;
 public class LightElectromobile extends Automobile {
 
     private boolean solarRoof;
-    private ElectricEngine electricEngine;
 
     public LightElectromobile() {
-        electricEngine = new ElectricEngine();
-        this.starter = this.electricEngine;
+        engine = new ElectricEngine();
+        this.starter = this.engine;
     }
     public LightElectromobile(String model, String color, int price,
                               int wheelQuantity, int length,
@@ -18,8 +17,8 @@ public class LightElectromobile extends Automobile {
                               int power, int torque, int batteryCapacity) {
         super(model, color, price, wheelQuantity, length);
         this.solarRoof = solarRoof;
-        this.electricEngine = new ElectricEngine(power, torque, batteryCapacity);
-        this.starter = this.electricEngine;
+        this.engine = new ElectricEngine(power, torque, batteryCapacity);
+        this.starter = this.engine;
     }
     public LightElectromobile(LightElectromobile lightElectromobile) {
         this(lightElectromobile.model, lightElectromobile.color, lightElectromobile.price,
@@ -33,7 +32,7 @@ public class LightElectromobile extends Automobile {
         this.solarRoof = solarRoof;
     }
     public void setElectricEngine(ElectricEngine electricEngine) {
-        this.electricEngine = electricEngine;
+        this.engine = electricEngine;
     }
 
     //Getters
@@ -41,12 +40,11 @@ public class LightElectromobile extends Automobile {
         return solarRoof;
     }
     public ElectricEngine getElectricEngine() {
-        return electricEngine;
+        return (ElectricEngine) engine;
     }
 
     @Override
     public String move() {
-        Startable starter = electricEngine;
         return starter.start() + " -> e-Car is moving -> " + starter.stop();
     }
 
@@ -58,21 +56,18 @@ public class LightElectromobile extends Automobile {
 
         LightElectromobile that = (LightElectromobile) o;
 
-        if (solarRoof != that.solarRoof) return false;
-        return electricEngine != null ? electricEngine.equals(that.electricEngine) : that.electricEngine == null;
+        return solarRoof == that.solarRoof;
     }
     @Override
     public int hashCode() {
         int result = super.hashCode();
         result = 31 * result + (solarRoof ? 1 : 0);
-        result = 31 * result + (electricEngine != null ? electricEngine.hashCode() : 0);
         return result;
     }
     @Override
     public String toString() {
-        return "\nLightElectromobile{" +
+        return "LightElectromobile{" +
                 "solarRoof=" + solarRoof +
-                ", electricEngine=" + electricEngine +
                 '}';
     }
 

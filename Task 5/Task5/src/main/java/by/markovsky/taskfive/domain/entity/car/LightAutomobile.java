@@ -5,12 +5,11 @@ package by.markovsky.taskfive.domain.entity.car;
  */
 public class LightAutomobile extends Automobile {
 
-    private OilEngine oilEngine;
     private ShiftBox shiftBox;
 
     public LightAutomobile() {
-        this.oilEngine = new OilEngine();
-        this.starter = this.oilEngine;
+        this.engine = new OilEngine();
+        this.starter = this.engine;
         this.shiftBox = new ShiftBox();
     }
     public LightAutomobile(String model, String color, int price,
@@ -18,8 +17,8 @@ public class LightAutomobile extends Automobile {
                            int power, int torque, String oilType, double volume,
                            String shiftType, int gears) {
         super(model, color, price, wheelQuantity, length);
-        this.oilEngine = new OilEngine(power, torque, oilType, volume);
-        this.starter = this.oilEngine;
+        this.engine = new OilEngine(power, torque, oilType, volume);
+        this.starter = this.engine;
         this.shiftBox = new ShiftBox(shiftType, gears);
     }
     public LightAutomobile(LightAutomobile lightAutomobile) {
@@ -31,7 +30,7 @@ public class LightAutomobile extends Automobile {
 
     //Setters
     public void setOilEngine(OilEngine oilEngine) {
-        this.oilEngine = oilEngine;
+        this.engine = oilEngine;
     }
     public void setShiftBox(ShiftBox shiftBox) {
         this.shiftBox = shiftBox;
@@ -39,7 +38,7 @@ public class LightAutomobile extends Automobile {
 
     //Getters
     public OilEngine getOilEngine() {
-        return oilEngine;
+        return (OilEngine) engine;
     }
     public ShiftBox getShiftBox() {
         return shiftBox;
@@ -58,21 +57,18 @@ public class LightAutomobile extends Automobile {
 
         LightAutomobile that = (LightAutomobile) o;
 
-        if (oilEngine != null ? !oilEngine.equals(that.oilEngine) : that.oilEngine != null) return false;
         return shiftBox != null ? shiftBox.equals(that.shiftBox) : that.shiftBox == null;
     }
     @Override
     public int hashCode() {
         int result = super.hashCode();
-        result = 31 * result + (oilEngine != null ? oilEngine.hashCode() : 0);
         result = 31 * result + (shiftBox != null ? shiftBox.hashCode() : 0);
         return result;
     }
     @Override
     public String toString() {
-        return "\nLightAutomobile{" +
-                "oilEngine=" + oilEngine +
-                ", shiftBox=" + shiftBox +
+        return "LightAutomobile{" +
+                "shiftBox=" + shiftBox +
                 '}';
     }
 

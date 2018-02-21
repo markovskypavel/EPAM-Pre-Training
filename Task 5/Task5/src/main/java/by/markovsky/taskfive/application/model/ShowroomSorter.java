@@ -1,6 +1,6 @@
 package by.markovsky.taskfive.application.model;
 
-import by.markovsky.taskfive.data.container.CustomArrayList;
+import by.markovsky.taskfive.data.container.CustomList;
 import by.markovsky.taskfive.domain.entity.car.Automobile;
 import by.markovsky.taskfive.domain.entity.car.LightAutomobile;
 import by.markovsky.taskfive.domain.entity.car.LightElectromobile;
@@ -11,35 +11,32 @@ import by.markovsky.taskfive.domain.entity.showroom.AutoShowroom;
  */
 public class ShowroomSorter {
 
-    public static CustomArrayList<LightElectromobile> getAllElectromobiles(AutoShowroom autoShowroom) {
-        CustomArrayList<LightElectromobile> electromobiles = new CustomArrayList<>();
+    public static CustomList<LightElectromobile> getAllElectromobiles(AutoShowroom autoShowroom, CustomList<LightElectromobile> container) {
         for (Automobile automobile : autoShowroom.getAutomobiles()) {
             if (automobile instanceof LightElectromobile) {
-                electromobiles.add((LightElectromobile) automobile);
+                container.add((LightElectromobile) automobile);
             }
         }
-        return electromobiles;
+        return container;
     }
 
-    public static CustomArrayList<LightAutomobile> getAllOilAutomobiles(AutoShowroom autoShowroom) {
-        CustomArrayList<LightAutomobile> lightAutomobiles = new CustomArrayList<>();
+    public static CustomList<LightAutomobile> getAllOilAutomobiles(AutoShowroom autoShowroom, CustomList<LightAutomobile> container) {
         for (Automobile automobile : autoShowroom.getAutomobiles()) {
             if (automobile instanceof LightAutomobile) {
-                lightAutomobiles.add((LightAutomobile) automobile);
+                container.add((LightAutomobile) automobile);
             }
         }
-        return lightAutomobiles;
+        return container;
     }
 
     /**Tried to make a generic for 2 upper methods, but it works crookedly*/
-/*    public <T> CustomArrayList<T> getAutos(Class<T> c, CustomArrayList<Automobile> automobiles) throws IllegalAccessException, InstantiationException {
-        CustomArrayList<T> specialAutomobiles = new CustomArrayList<>();
-        for (Automobile automobile : automobiles) {
+/*    public <T> CustomList<T> getAutos(Class<T> c, AutoShowroom autoShowroom, CustomList<T> container) throws IllegalAccessException, InstantiationException {
+        for (Automobile automobile : autoShowroom.getAutomobiles()) {
             if (automobile.getClass().isInstance(c.newInstance())) {
-                specialAutomobiles.add((T) automobile);
+                container.add((T) automobile);
             }
         }
-        return specialAutomobiles;
+        return container;
     }*/
 
 }

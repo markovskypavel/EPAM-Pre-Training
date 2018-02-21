@@ -9,7 +9,7 @@ import by.markovsky.taskfive.domain.entity.car.Automobile;
  */
 public class AutoShowroom {
 
-    private CustomArrayList<Automobile> automobiles;
+    private CustomList<Automobile> automobiles;
     private String name;
 
     public AutoShowroom() {
@@ -25,7 +25,7 @@ public class AutoShowroom {
     }
 
     //Setters
-    public void setAutomobiles(CustomArrayList<Automobile> automobiles) {
+    public void setAutomobiles(CustomList<Automobile> automobiles) {
         this.automobiles = automobiles;
     }
     public void setName(String name) {

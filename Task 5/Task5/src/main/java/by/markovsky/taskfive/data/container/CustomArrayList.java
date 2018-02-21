@@ -5,13 +5,11 @@ import java.util.*;
 /**
  * Created by Pavel Markovsky on 17.02.2018.
  */
-public class CustomArrayList<E> implements CustomList<E> {
+public class CustomArrayList<E> extends CustomAbstractList<E> implements CustomList<E> {
 
     private static final int STOCK_SIZE = 0;
-    private static final int EMPTY_SIZE = 0;
 
     private Object[] arrayList;
-    private int size;
 
     public CustomArrayList() {
         arrayList = new Object[STOCK_SIZE];
@@ -27,15 +25,8 @@ public class CustomArrayList<E> implements CustomList<E> {
     public CustomArrayList(CustomArrayList<E> customArrayList) {
         this((E)customArrayList.arrayList);
     }
-
-    @Override
-    public int size() {
-        return size;
-    }
-
-    @Override
-    public boolean isEmpty() {
-        return size == EMPTY_SIZE;
+    public CustomArrayList(CustomList<E> customList) {
+        this((E)customList.toArray());
     }
 
     @Override

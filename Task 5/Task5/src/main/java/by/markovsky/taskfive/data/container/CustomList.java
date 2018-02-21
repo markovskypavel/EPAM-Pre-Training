@@ -8,6 +8,7 @@ import java.util.Iterator;
 public interface CustomList<E> extends Iterable<E> {
     int size();
     boolean isEmpty();
+
     boolean add(E element);
     boolean addSeveral(E... element);
     E remove(int index);

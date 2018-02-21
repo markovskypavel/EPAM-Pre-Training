@@ -10,6 +10,7 @@ public abstract class Automobile implements Moveable {
     protected int price;
 
     protected Chassis chassis;
+    protected Engine engine;
     protected Startable starter; //Interface for engine
 
     public Automobile() {
@@ -49,6 +50,9 @@ public abstract class Automobile implements Moveable {
     public Chassis getChassis() {
         return chassis;
     }
+    public Engine getEngine() {
+        return engine;
+    }
 
     @Override
     public boolean equals(Object o) {
@@ -60,7 +64,8 @@ public abstract class Automobile implements Moveable {
         if (price != that.price) return false;
         if (model != null ? !model.equals(that.model) : that.model != null) return false;
         if (color != null ? !color.equals(that.color) : that.color != null) return false;
-        return chassis != null ? chassis.equals(that.chassis) : that.chassis == null;
+        if (chassis != null ? !chassis.equals(that.chassis) : that.chassis != null) return false;
+        return engine != null ? engine.equals(that.engine) : that.engine == null;
     }
     @Override
     public int hashCode() {
@@ -68,6 +73,7 @@ public abstract class Automobile implements Moveable {
         result = 31 * result + (color != null ? color.hashCode() : 0);
         result = 31 * result + price;
         result = 31 * result + (chassis != null ? chassis.hashCode() : 0);
+        result = 31 * result + (engine != null ? engine.hashCode() : 0);
         return result;
     }
     @Override
@@ -77,6 +83,7 @@ public abstract class Automobile implements Moveable {
                 ", color='" + color + '\'' +
                 ", price=" + price +
                 ", chassis=" + chassis +
+                ", engine=" + engine +
                 '}';
     }
 
