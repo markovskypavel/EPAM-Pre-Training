@@ -3,6 +3,9 @@ package by.markovsky.tasksix.data.collection;
 import java.util.Arrays;
 import java.util.Iterator;
 
+/**
+ * Created by Pavel Markovsky on 23.02.2018.
+ */
 public class ArrayQueue<E> extends CustomAbsractArrayCollection<E> implements Queue<E> {
 
     private Object[] arrayQueue;

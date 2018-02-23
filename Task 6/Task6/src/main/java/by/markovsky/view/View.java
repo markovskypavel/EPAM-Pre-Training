@@ -1,5 +1,8 @@
-package by.markovsky.tasksix.view;
+package by.markovsky.view;
 
+/**
+ * Created by Pavel Markovsky on 23.02.2018.
+ */
 public class View {
 
     public static void print(Object msg) {

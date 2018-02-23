@@ -2,6 +2,9 @@ package by.markovsky.tasksix.data.collection;
 
 import java.util.Objects;
 
+/**
+ * Created by Pavel Markovsky on 23.02.2018.
+ */
 public abstract class CustomAbsractArrayCollection<E> implements CustomCollection<E> {
 
     protected static final int EMPTY_SIZE = 0;

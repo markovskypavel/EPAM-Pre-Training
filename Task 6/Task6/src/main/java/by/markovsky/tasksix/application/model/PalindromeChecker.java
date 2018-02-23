@@ -2,6 +2,9 @@ package by.markovsky.tasksix.application.model;
 
 import by.markovsky.tasksix.data.collection.Stack;
 
+/**
+ * Created by Pavel Markovsky on 23.02.2018.
+ */
 public class PalindromeChecker {
 
     public static boolean isPalindrome(String word, Stack<Character> stack){
