@@ -3,7 +3,7 @@ package by.markovsky.tasksix.presentation.controller;
 import by.markovsky.tasksix.application.model.PalindromeChecker;
 import by.markovsky.tasksix.data.collection.ArrayStack;
 import by.markovsky.tasksix.data.collection.Stack;
-import by.markovsky.view.View;
+import by.markovsky.tasksix.view.View;
 
 /**
  * Created by Pavel Markovsky on 23.02.2018.

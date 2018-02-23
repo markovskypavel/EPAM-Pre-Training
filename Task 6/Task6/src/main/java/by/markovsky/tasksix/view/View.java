@@ -1,4 +1,4 @@
-package by.markovsky.view;
+package by.markovsky.tasksix.view;
 
 /**
  * Created by Pavel Markovsky on 23.02.2018.
