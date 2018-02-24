@@ -1,17 +1,13 @@
 package by.markovsky.tasksix.data.collection;
 
-import java.util.Objects;
-
 /**
  * Created by Pavel Markovsky on 23.02.2018.
  */
-public abstract class CustomAbsractArrayCollection<E> implements CustomCollection<E> {
+public abstract class CustomAbsractCollection<E> implements CustomCollection<E> {
 
     protected static final int EMPTY_SIZE = 0;
-    protected static final int DEFAULT_SIZE = 10;
 
     protected int size;
-    protected int containerSize;
 
     @Override
     public int size() {
@@ -24,27 +20,22 @@ public abstract class CustomAbsractArrayCollection<E> implements CustomCollectio
     }
 
     @Override
-    public boolean isFull() {
-        return size == containerSize;
-    }
-
-    @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        CustomAbsractArrayCollection<?> that = (CustomAbsractArrayCollection<?>) o;
-        return size == that.size &&
-                containerSize == that.containerSize;
+
+        CustomAbsractCollection<?> that = (CustomAbsractCollection<?>) o;
+
+        return size == that.size;
     }
     @Override
     public int hashCode() {
-        return Objects.hash(size, containerSize);
+        return size;
     }
     @Override
     public String toString() {
-        return "CustomAbsractArrayCollection{" +
+        return "CustomAbsractCollection{" +
                 "size=" + size +
-                ", containerSize=" + containerSize +
                 '}';
     }
 

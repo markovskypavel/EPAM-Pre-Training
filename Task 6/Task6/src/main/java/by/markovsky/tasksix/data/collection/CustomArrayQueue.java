@@ -1,43 +1,51 @@
 package by.markovsky.tasksix.data.collection;
 
+import by.markovsky.tasksix.infrastructure.exception.CustomQueueOverflowException;
+
 import java.util.Arrays;
 import java.util.Iterator;
 
 /**
  * Created by Pavel Markovsky on 23.02.2018.
  */
-public class ArrayQueue<E> extends CustomAbsractArrayCollection<E> implements Queue<E> {
+public class CustomArrayQueue<E> extends CustomAbstractFixedCollection<E> implements Queue<E> {
 
     private Object[] arrayQueue;
 
-    public ArrayQueue() {
-        this.arrayQueue = new Object[DEFAULT_SIZE];
+    public CustomArrayQueue() {
+        this.arrayQueue = new Object[this.containerSize = DEFAULT_SIZE];
         this.size = EMPTY_SIZE;
-        this.containerSize = DEFAULT_SIZE;
     }
-    public ArrayQueue(E... element) {
-        this.arrayQueue = element.length > DEFAULT_SIZE ? new Object[element.length] : new Object[DEFAULT_SIZE];
-        this.containerSize = element.length;
+    public CustomArrayQueue(int size) {
+        this.arrayQueue = new Object[this.containerSize = size];
+        this.size = EMPTY_SIZE;
+    }
+    public CustomArrayQueue(E... element) {
+        this.arrayQueue = element.length > DEFAULT_SIZE ? new Object[this.containerSize = element.length] : new Object[this.containerSize = DEFAULT_SIZE];
         for (int i = 0; i < element.length; i++) {
             arrayQueue[i] = element[i];
         }
         this.size = element.length;
     }
-    public ArrayQueue(ArrayQueue<E> arrQueue) {
+    public CustomArrayQueue(CustomArrayQueue<E> arrQueue) {
         this((E)arrQueue.arrayQueue);
     }
-    public ArrayQueue(Queue<E> queue) {
+    public CustomArrayQueue(Queue<E> queue) {
         this((E)queue.toArray());
     }
 
     @Override
-    public boolean enqueue(E element) {
-        Object[] tempArray = arrayQueue;
-        arrayQueue = size >= containerSize ? new Object[++containerSize] : new Object[containerSize];
-        arrayQueue[0] = element;
-        for (int i = 0; i < tempArray.length; i++) {
-            arrayQueue[i + 1] = tempArray[i];
+    public boolean enqueue(E element) throws CustomQueueOverflowException {
+        if (size >= containerSize) {
+            throw new CustomQueueOverflowException();
         }
+        for (int i = size; i > 0; i--) {
+            Object temp = arrayQueue[i];
+            arrayQueue[i] = arrayQueue[i - 1];
+            arrayQueue[i - 1] = temp;
+        }
+        arrayQueue[0] = element;
+        ++size;
         return true;
     }
 
@@ -56,9 +64,8 @@ public class ArrayQueue<E> extends CustomAbsractArrayCollection<E> implements Qu
         for (int i = 0; i < arrayQueue.length; i++) {
             arrayQueue[i] = null;
         }
-        this.arrayQueue = new Object[DEFAULT_SIZE];
-        this.size = EMPTY_SIZE;
-        this.containerSize = DEFAULT_SIZE;
+        arrayQueue = new Object[containerSize];
+        size = EMPTY_SIZE;
     }
 
     @Override
@@ -71,7 +78,6 @@ public class ArrayQueue<E> extends CustomAbsractArrayCollection<E> implements Qu
         return arrayQueue;
     }
 
-    //TODO: check iterator
     @Override
     public Iterator<E> iterator() {
         return new Iterator<E>() {
@@ -87,11 +93,6 @@ public class ArrayQueue<E> extends CustomAbsractArrayCollection<E> implements Qu
                 return (E) arrayQueue[currentPos--];
             }
 
-            @Override
-            public void remove() {
-                throw new UnsupportedOperationException();
-            }
-
             public int getCurrentPos(){
                 return currentPos;
             }
@@ -103,7 +104,7 @@ public class ArrayQueue<E> extends CustomAbsractArrayCollection<E> implements Qu
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         if (!super.equals(o)) return false;
-        ArrayQueue<?> that = (ArrayQueue<?>) o;
+        CustomArrayQueue<?> that = (CustomArrayQueue<?>) o;
         return Arrays.equals(arrayQueue, that.arrayQueue);
     }
     @Override
@@ -115,7 +116,7 @@ public class ArrayQueue<E> extends CustomAbsractArrayCollection<E> implements Qu
     }
     @Override
     public String toString() {
-        return "ArrayQueue{" +
+        return "CustomArrayQueue{" +
                 "arrayQueue=" + Arrays.toString(arrayQueue) +
                 ", size=" + size +
                 ", containerSize=" + containerSize +

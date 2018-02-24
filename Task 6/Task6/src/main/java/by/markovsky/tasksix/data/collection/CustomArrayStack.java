@@ -1,46 +1,44 @@
 package by.markovsky.tasksix.data.collection;
 
-import java.util.Arrays;
-import java.util.Iterator;
+import by.markovsky.tasksix.infrastructure.exception.CustomStackOverflowException;
+
+import java.util.*;
 
 /**
  * Created by Pavel Markovsky on 23.02.2018.
  */
-public class ArrayStack<E> extends CustomAbsractArrayCollection<E> implements Stack<E> {
+public class CustomArrayStack<E> extends CustomAbstractFixedCollection<E> implements Stack<E> {
 
     private Object[] arrayStack;
 
-    public ArrayStack() {
-        this.arrayStack = new Object[DEFAULT_SIZE];
+    public CustomArrayStack() {
+        this.arrayStack = new Object[this.containerSize = DEFAULT_SIZE];
         this.size = EMPTY_SIZE;
-        this.containerSize = DEFAULT_SIZE;
     }
-    public ArrayStack(E... element) {
+    public CustomArrayStack(int size) {
+        this.arrayStack = new Object[this.containerSize = size];
+        this.size = EMPTY_SIZE;
+    }
+    public CustomArrayStack(E... element) {
         this.arrayStack = element.length > DEFAULT_SIZE ? new Object[this.containerSize = element.length] : new Object[this.containerSize = DEFAULT_SIZE];
         for (int i = 0; i < element.length; i++) {
             arrayStack[i] = element[i];
         }
         this.size = element.length;
     }
-    public ArrayStack(ArrayStack<E> arrStack) {
+    public CustomArrayStack(CustomArrayStack<E> arrStack) {
         this((E)arrStack.arrayStack);
     }
-    public ArrayStack(Stack<E> stack) {
+    public CustomArrayStack(Stack<E> stack) {
         this((E)stack.toArray());
     }
 
     @Override
-    public boolean push(E element) {
+    public boolean push(E element) throws CustomStackOverflowException {
         if (size >= containerSize) {
-            Object[] tempArray = arrayStack;
-            arrayStack = new Object[++containerSize];
-            for (int i = 0; i < tempArray.length; i++) {
-                arrayStack[i] = tempArray[i];
-            }
-            arrayStack[size++] = element;
-        } else {
-            arrayStack[size++] = element;
+            throw new CustomStackOverflowException();
         }
+        arrayStack[size++] = element;
         return true;
     }
 
@@ -59,9 +57,8 @@ public class ArrayStack<E> extends CustomAbsractArrayCollection<E> implements St
         for (int i = 0; i < arrayStack.length; i++) {
             arrayStack[i] = null;
         }
-        this.arrayStack = new Object[DEFAULT_SIZE];
-        this.size = EMPTY_SIZE;
-        this.containerSize = DEFAULT_SIZE;
+        arrayStack = new Object[containerSize];
+        size = EMPTY_SIZE;
     }
 
     @Override
@@ -74,7 +71,6 @@ public class ArrayStack<E> extends CustomAbsractArrayCollection<E> implements St
         return arrayStack;
     }
 
-    //TODO: Check iterator
     @Override
     public Iterator<E> iterator() {
         return new Iterator<E>() {
@@ -90,11 +86,6 @@ public class ArrayStack<E> extends CustomAbsractArrayCollection<E> implements St
                 return (E) arrayStack[currentPos--];
             }
 
-            @Override
-            public void remove() {
-                throw new UnsupportedOperationException();
-            }
-
             public int getCurrentPos(){
                 return currentPos;
             }
@@ -106,7 +97,7 @@ public class ArrayStack<E> extends CustomAbsractArrayCollection<E> implements St
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         if (!super.equals(o)) return false;
-        ArrayStack<?> that = (ArrayStack<?>) o;
+        CustomArrayStack<?> that = (CustomArrayStack<?>) o;
         return Arrays.equals(arrayStack, that.arrayStack);
     }
     @Override
@@ -117,7 +108,7 @@ public class ArrayStack<E> extends CustomAbsractArrayCollection<E> implements St
     }
     @Override
     public String toString() {
-        return "ArrayStack{" +
+        return "CustomArrayStack{" +
                 "arrayStack=" + Arrays.toString(arrayStack) +
                 ", size=" + size +
                 ", containerSize=" + containerSize +
