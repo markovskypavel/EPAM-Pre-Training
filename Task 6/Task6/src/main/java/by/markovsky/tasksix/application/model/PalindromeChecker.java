@@ -1,6 +1,7 @@
 package by.markovsky.tasksix.application.model;
 
 import by.markovsky.tasksix.data.collection.CustomArrayStack;
+import by.markovsky.tasksix.data.collection.CustomListStack;
 import by.markovsky.tasksix.data.collection.Stack;
 import by.markovsky.tasksix.infrastructure.exception.CustomStackOverflowException;
 

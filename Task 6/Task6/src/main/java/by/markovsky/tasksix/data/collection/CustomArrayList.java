@@ -155,13 +155,13 @@ public class CustomArrayList<E> extends CustomAbstractList<E> implements CustomL
 
     @Override
     public String allIndexOf(Object o) {
-        String index = "";
+        StringBuilder index = new StringBuilder();
         for (int i = 0; i < arrayList.length; i++) {
             if (o.equals(arrayList[i])) {
-                index += i + " ";
+                index.append(i + " ");
             }
         }
-        return index;
+        return index.toString().trim();
     }
 
     @Override
@@ -211,7 +211,7 @@ public class CustomArrayList<E> extends CustomAbstractList<E> implements CustomL
 
     @Override
     public E peek() {
-        throw new UnsupportedOperationException();
+        return isEmpty() ? null : (E) arrayList[size - 1];
     }
 
     @Override
