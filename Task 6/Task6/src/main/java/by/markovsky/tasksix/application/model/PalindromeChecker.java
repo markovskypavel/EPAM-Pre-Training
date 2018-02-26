@@ -3,6 +3,7 @@ package by.markovsky.tasksix.application.model;
 import by.markovsky.tasksix.data.collection.CustomArrayStack;
 import by.markovsky.tasksix.data.collection.CustomListStack;
 import by.markovsky.tasksix.data.collection.Stack;
+import by.markovsky.tasksix.infrastructure.exception.CustomStackEmptyException;
 import by.markovsky.tasksix.infrastructure.exception.CustomStackOverflowException;
 
 /**
@@ -28,7 +29,7 @@ public class PalindromeChecker {
                 reversedWord.append(stack.pop());
             }
             return reversedWord.toString();
-        } catch (CustomStackOverflowException csoe) {
+        } catch (CustomStackOverflowException | CustomStackEmptyException csoe) {
             csoe.printStackTrace();
             return null;
         }

@@ -1,5 +1,6 @@
 package by.markovsky.tasksix.data.collection;
 
+import by.markovsky.tasksix.infrastructure.exception.CustomStackEmptyException;
 import by.markovsky.tasksix.infrastructure.exception.CustomStackOverflowException;
 
 import java.util.Iterator;
@@ -44,7 +45,10 @@ public class CustomListStack<E> extends CustomAbstractFixedCollection<E> impleme
     }
 
     @Override
-    public E pop() {
+    public E pop() throws CustomStackEmptyException {
+        if(isEmpty()){
+            throw new CustomStackEmptyException();
+        }
         return linkedList.remove(--size);
     }
 
@@ -56,7 +60,7 @@ public class CustomListStack<E> extends CustomAbstractFixedCollection<E> impleme
 
     @Override
     public E peek() {
-        return linkedList.peek();
+        return isEmpty() ? null : linkedList.peek();
     }
 
     @Override

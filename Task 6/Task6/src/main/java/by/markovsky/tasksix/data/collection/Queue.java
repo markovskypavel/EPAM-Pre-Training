@@ -1,5 +1,6 @@
 package by.markovsky.tasksix.data.collection;
 
+import by.markovsky.tasksix.infrastructure.exception.CustomQueueEmptyException;
 import by.markovsky.tasksix.infrastructure.exception.CustomQueueOverflowException;
 
 /**
@@ -7,7 +8,7 @@ import by.markovsky.tasksix.infrastructure.exception.CustomQueueOverflowExceptio
  */
 public interface Queue<E> extends CustomCollection<E> {
     boolean enqueue(E element) throws CustomQueueOverflowException;
-    E dequeue();
+    E dequeue() throws CustomQueueEmptyException;
 }
 
 

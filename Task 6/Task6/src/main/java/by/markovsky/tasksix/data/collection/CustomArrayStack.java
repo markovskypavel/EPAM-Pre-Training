@@ -1,8 +1,10 @@
 package by.markovsky.tasksix.data.collection;
 
+import by.markovsky.tasksix.infrastructure.exception.CustomStackEmptyException;
 import by.markovsky.tasksix.infrastructure.exception.CustomStackOverflowException;
 
-import java.util.*;
+import java.util.Arrays;
+import java.util.Iterator;
 
 /**
  * Created by Pavel Markovsky on 23.02.2018.
@@ -43,13 +45,13 @@ public class CustomArrayStack<E> extends CustomAbstractFixedCollection<E> implem
     }
 
     @Override
-    public E pop() {
-        if(!isEmpty()){
-            E tempObj = (E) arrayStack[size - 1];
-            arrayStack[--size] = null;
-            return tempObj;
+    public E pop() throws CustomStackEmptyException {
+        if (isEmpty()) {
+            throw new CustomStackEmptyException();
         }
-        return null;
+        E tempObj = (E) arrayStack[size - 1];
+        arrayStack[--size] = null;
+        return tempObj;
     }
 
     @Override
@@ -63,7 +65,7 @@ public class CustomArrayStack<E> extends CustomAbstractFixedCollection<E> implem
 
     @Override
     public E peek() {
-        return (E) arrayStack[size - 1];
+        return isEmpty() ? null : (E) arrayStack[size - 1];
     }
 
     @Override

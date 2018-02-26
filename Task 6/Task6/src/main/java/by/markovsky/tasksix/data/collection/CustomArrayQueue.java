@@ -1,5 +1,6 @@
 package by.markovsky.tasksix.data.collection;
 
+import by.markovsky.tasksix.infrastructure.exception.CustomQueueEmptyException;
 import by.markovsky.tasksix.infrastructure.exception.CustomQueueOverflowException;
 
 import java.util.Arrays;
@@ -50,13 +51,13 @@ public class CustomArrayQueue<E> extends CustomAbstractFixedCollection<E> implem
     }
 
     @Override
-    public E dequeue() {
-        if(!isEmpty()){
-            E tempObj = (E) arrayQueue[size - 1];
-            arrayQueue[--size] = null;
-            return tempObj;
+    public E dequeue() throws CustomQueueEmptyException {
+        if(isEmpty()){
+            throw new CustomQueueEmptyException();
         }
-        return null;
+        E tempObj = (E) arrayQueue[size - 1];
+        arrayQueue[--size] = null;
+        return tempObj;
     }
 
     @Override
@@ -70,7 +71,7 @@ public class CustomArrayQueue<E> extends CustomAbstractFixedCollection<E> implem
 
     @Override
     public E peek() {
-        return (E) arrayQueue[size - 1];
+        return isEmpty() ? null : (E) arrayQueue[size - 1];
     }
 
     @Override

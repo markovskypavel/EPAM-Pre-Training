@@ -1,5 +1,6 @@
 package by.markovsky.tasksix.data.collection;
 
+import by.markovsky.tasksix.infrastructure.exception.CustomStackEmptyException;
 import by.markovsky.tasksix.infrastructure.exception.CustomStackOverflowException;
 
 /**
@@ -7,6 +8,6 @@ import by.markovsky.tasksix.infrastructure.exception.CustomStackOverflowExceptio
  */
 public interface Stack<E> extends CustomCollection<E> {
     boolean push(E element) throws CustomStackOverflowException;
-    E pop();
+    E pop() throws CustomStackEmptyException;
 }
 

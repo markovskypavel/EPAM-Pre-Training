@@ -1,5 +1,6 @@
 package by.markovsky.tasksix.data.collection;
 
+import by.markovsky.tasksix.infrastructure.exception.CustomQueueEmptyException;
 import by.markovsky.tasksix.infrastructure.exception.CustomQueueOverflowException;
 
 import java.util.Iterator;
@@ -44,7 +45,10 @@ public class CustomListQueue<E> extends CustomAbstractFixedCollection<E> impleme
     }
 
     @Override
-    public E dequeue() {
+    public E dequeue() throws CustomQueueEmptyException {
+        if(isEmpty()){
+            throw new CustomQueueEmptyException();
+        }
         return linkedList.remove(--size);
     }
 
@@ -56,7 +60,7 @@ public class CustomListQueue<E> extends CustomAbstractFixedCollection<E> impleme
 
     @Override
     public E peek() {
-        return linkedList.peek();
+        return isEmpty() ? null : linkedList.peek();
     }
 
     @Override
