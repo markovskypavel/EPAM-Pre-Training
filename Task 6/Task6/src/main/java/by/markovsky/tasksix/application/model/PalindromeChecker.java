@@ -18,7 +18,7 @@ public class PalindromeChecker {
         word = word.toLowerCase();
         return word.equals(reverseString(word));
     }
-    public static String reverseString(String word) {
+    private static String reverseString(String word) {
         Stack<Character> stack = new CustomArrayStack<>(word.length());
         StringBuilder reversedWord = new StringBuilder();
         try {
