@@ -3,7 +3,7 @@ package by.markovsky.tasksix.data.collection;
 /**
  * Created by Pavel Markovsky on 24.02.2018.
  */
-public abstract class CustomAbstractList<E> extends CustomAbsractCollection<E> implements CustomList<E> {
+public abstract class CustomAbstractList<E> extends CustomAbstractCollection<E> implements CustomList<E> {
 
     @Override
     public boolean isFull() {

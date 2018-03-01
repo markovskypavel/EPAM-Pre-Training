@@ -3,7 +3,7 @@ package by.markovsky.tasksix.data.collection;
 /**
  * Created by Pavel Markovsky on 23.02.2018.
  */
-public abstract class CustomAbsractCollection<E> implements CustomCollection<E> {
+public abstract class CustomAbstractCollection<E> implements CustomCollection<E> {
 
     protected static final int EMPTY_SIZE = 0;
 
@@ -24,7 +24,7 @@ public abstract class CustomAbsractCollection<E> implements CustomCollection<E> 
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        CustomAbsractCollection<?> that = (CustomAbsractCollection<?>) o;
+        CustomAbstractCollection<?> that = (CustomAbstractCollection<?>) o;
 
         return size == that.size;
     }
@@ -34,7 +34,7 @@ public abstract class CustomAbsractCollection<E> implements CustomCollection<E> 
     }
     @Override
     public String toString() {
-        return "CustomAbsractCollection{" +
+        return "CustomAbstractCollection{" +
                 "size=" + size +
                 '}';
     }

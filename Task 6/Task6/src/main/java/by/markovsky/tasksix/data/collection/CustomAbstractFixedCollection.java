@@ -6,7 +6,7 @@ package by.markovsky.tasksix.data.collection;
 /**
  Abstract class for fixed-size containers like stack or queue.
  */
-public abstract class CustomAbstractFixedCollection<E> extends CustomAbsractCollection<E> implements CustomCollection<E> {
+public abstract class CustomAbstractFixedCollection<E> extends CustomAbstractCollection<E> implements CustomCollection<E> {
 
     protected static final int DEFAULT_SIZE = 10;
 
