@@ -20,12 +20,7 @@ import by.markovsky.taskfive.view.View;
 public class AutoShowroomController {
 
     public static void main(String[] args) {
-        ShowroomManagement showroomManagement = ShowroomManagement.getShowroomManagement();
-        showroomManagement.setDirector("Pavel Markovsky");
-
-        AutoShowroom autoShowroom = new AutoShowroom("Markovsky Motors");
-        showroomManagement.setAutoShowroom(autoShowroom);
-
+        ShowroomManagement showroomManagement = new ShowroomManagement(new AutoShowroom("Markovsky Motors"), "Pavel Markovsky");
         try {
             LightAutomobile automobile = new LightAutomobile("Audi RS6", "White", 215000, 4, 4100, 560, 6000, OilType.BENZIN.name(), 4.0, ShiftBoxType.ASGB.getType(), 6);
             CarValidator.isLightAutomobileValid(automobile);

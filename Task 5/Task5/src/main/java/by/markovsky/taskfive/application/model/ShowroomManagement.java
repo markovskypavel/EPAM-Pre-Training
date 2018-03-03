@@ -8,15 +8,15 @@ import by.markovsky.taskfive.domain.entity.showroom.AutoShowroom;
  */
 public class ShowroomManagement {
 
-    private static ShowroomManagement showroomManagement = new ShowroomManagement();
-    private ShowroomManagement() {
-    }
-    public static ShowroomManagement getShowroomManagement(){
-        return showroomManagement;
-    }
-
     private AutoShowroom autoShowroom;
     private String director;
+
+    public ShowroomManagement() {
+    }
+    public ShowroomManagement(AutoShowroom autoShowroom, String director) {
+        this.autoShowroom = autoShowroom;
+        this.director = director;
+    }
 
     //Setters
     public void setAutoShowroom(AutoShowroom autoShowroom) {
