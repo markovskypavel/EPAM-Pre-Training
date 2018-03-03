@@ -4,7 +4,7 @@ package by.markovsky.tasksix.data.collection;
  * Created by Pavel Markovsky on 24.02.2018.
  */
 /**
- Abstract class for fixed-size containers like stack or queue.
+ Abstract class for fixed-size containers.
  */
 public abstract class CustomAbstractFixedCollection<E> extends CustomAbstractCollection<E> implements CustomCollection<E> {
 

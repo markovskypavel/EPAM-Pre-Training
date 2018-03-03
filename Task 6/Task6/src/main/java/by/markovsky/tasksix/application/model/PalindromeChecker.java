@@ -1,9 +1,8 @@
 package by.markovsky.tasksix.application.model;
 
-import by.markovsky.tasksix.data.collection.CustomArrayStack;
-import by.markovsky.tasksix.data.collection.CustomListStack;
-import by.markovsky.tasksix.data.collection.Stack;
-import by.markovsky.tasksix.infrastructure.exception.CustomStackEmptyException;
+import by.markovsky.tasksix.data.stack.CustomArrayStack;
+import by.markovsky.tasksix.data.stack.Stack;
+import by.markovsky.tasksix.infrastructure.exception.CustomContainerEmptyException;
 import by.markovsky.tasksix.infrastructure.exception.CustomStackOverflowException;
 
 /**
@@ -29,7 +28,7 @@ public class PalindromeChecker {
                 reversedWord.append(stack.pop());
             }
             return reversedWord.toString();
-        } catch (CustomStackOverflowException | CustomStackEmptyException csoe) {
+        } catch (CustomStackOverflowException | CustomContainerEmptyException csoe) {
             csoe.printStackTrace();
             return null;
         }
