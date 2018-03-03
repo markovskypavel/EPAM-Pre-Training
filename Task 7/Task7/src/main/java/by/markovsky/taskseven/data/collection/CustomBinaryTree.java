@@ -1,5 +1,7 @@
 package by.markovsky.taskseven.data.collection;
 
+import by.markovsky.taskseven.infrastructure.exception.CustomTreeEmptyException;
+
 import java.util.Iterator;
 
 /**
@@ -90,7 +92,16 @@ public class CustomBinaryTree<E extends Comparable<? super E>>
 
     @Override
     public boolean contains(E element) {
-        return false;
+        return findElement(root, element) != null;
+    }
+    private Node findElement(Node node, E element){
+        if (node == null) {
+            return null;
+        }
+        if (element.compareTo(node.element) == 0) {
+            return node;
+        }
+        return (element.compareTo(node.element) < 0) ? findElement(node.left, element) : findElement(node.right, element);
     }
 
     @Override
@@ -100,17 +111,50 @@ public class CustomBinaryTree<E extends Comparable<? super E>>
     }
 
     @Override
-    public boolean remove(E element) {
-        return true;
+    public void remove(E element) throws CustomTreeEmptyException {
+        if(isEmpty()){
+            throw new CustomTreeEmptyException();
+        }
+        removeRecursion(root, element);
+    }
+    private Node removeRecursion(Node current, E element){
+        if (current == null) {
+            return null;
+        }
+        if (element.compareTo(current.element) == 0) {
+            //Situation, when leaf do not have children
+            if (current.left == null && current.right == null) {
+                return null;
+            }
+            //Situation, when leaf have one children
+            if (current.right == null) {
+                return current.left;
+            }
+            if (current.left == null) {
+                return current.right;
+            }
+            //Situation, when leaf have two children
+            E smallestValue = findSmallestValue(current.right);
+            current.element = smallestValue;
+            current.right = removeRecursion(current.right, smallestValue);
+            return current;
+        }
+        if (element.compareTo(current.element) < 0) {
+            current.left = removeRecursion(current.left, element);
+            return current;
+        }
+        current.right = removeRecursion(current.right, element);
+        return current;
+    }
+    private E findSmallestValue(Node node) {
+        return node.left == null ? node.element : findSmallestValue(node.left);
     }
 
     @Override
-    public E[] toArray() {
-        return null;
-    }
-
-    @Override
-    public StringBuilder preOrder() {
+    public StringBuilder preOrder() throws CustomTreeEmptyException {
+        if(isEmpty()){
+            throw new CustomTreeEmptyException();
+        }
         return preOrderRecursion(root, new StringBuilder());
     }
     private StringBuilder preOrderRecursion(Node node, StringBuilder stringBuilder){
@@ -123,7 +167,10 @@ public class CustomBinaryTree<E extends Comparable<? super E>>
     }
 
     @Override
-    public StringBuilder postOrder() {
+    public StringBuilder postOrder() throws CustomTreeEmptyException {
+        if(isEmpty()){
+            throw new CustomTreeEmptyException();
+        }
         return postOrderRecursion(root, new StringBuilder());
     }
     private StringBuilder postOrderRecursion(Node node, StringBuilder stringBuilder){
@@ -136,7 +183,10 @@ public class CustomBinaryTree<E extends Comparable<? super E>>
     }
 
     @Override
-    public StringBuilder inOrder() {
+    public StringBuilder inOrder() throws CustomTreeEmptyException {
+        if(isEmpty()){
+            throw new CustomTreeEmptyException();
+        }
         return inOrderRecursion(root, new StringBuilder());
     }
     private StringBuilder inOrderRecursion(Node node, StringBuilder stringBuilder){
@@ -146,6 +196,11 @@ public class CustomBinaryTree<E extends Comparable<? super E>>
             inOrderRecursion(node.right, stringBuilder);
         }
         return stringBuilder;
+    }
+
+    @Override
+    public E[] toArray() throws UnsupportedOperationException {
+        throw new UnsupportedOperationException();
     }
 
     @Override
