@@ -3,8 +3,6 @@ package by.markovsky.tasknine.application.model.parser;
 import by.markovsky.tasknine.domain.entity.Mark;
 import by.markovsky.tasknine.domain.entity.Sentence;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 

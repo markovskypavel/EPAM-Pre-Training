@@ -2,7 +2,6 @@ package by.markovsky.tasknine.presentation.controller;
 
 import by.markovsky.tasknine.application.model.TextWork;
 import by.markovsky.tasknine.application.model.util.FileWork;
-import by.markovsky.tasknine.infrastructure.exception.CustomTreeEmptyException;
 import by.markovsky.tasknine.view.View;
 
 /**
@@ -10,7 +9,7 @@ import by.markovsky.tasknine.view.View;
  */
 public class Controller {
 
-    public static void main(String[] args) throws CustomTreeEmptyException {
+    public static void main(String[] args) {
         int length = 14;
         String word1 = "промышленности";
         String word2 = "отрасли";
