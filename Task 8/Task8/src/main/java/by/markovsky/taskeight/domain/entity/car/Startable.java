@@ -1,0 +1,9 @@
+package by.markovsky.taskeight.domain.entity.car;
+
+/**
+ * Created by Pavel Markovsky on 18.02.2018.
+ */
+public interface Startable {
+    Object start();
+    Object stop();
+}
