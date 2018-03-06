@@ -1,15 +1,12 @@
 package by.markovsky.tasknine.application.model;
 
 import by.markovsky.tasknine.application.model.parser.TextParser;
-import by.markovsky.tasknine.data.collection.CustomBinaryTree;
-import by.markovsky.tasknine.data.collection.CustomTree;
 import by.markovsky.tasknine.domain.entity.Paragraph;
 import by.markovsky.tasknine.domain.entity.Sentence;
 import by.markovsky.tasknine.domain.entity.SentenceParts;
 import by.markovsky.tasknine.domain.entity.Word;
-import by.markovsky.tasknine.infrastructure.exception.CustomTreeEmptyException;
 
-import java.util.List;
+import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -38,8 +35,13 @@ public class TextWork {
 
     //TASK VARIANT 10
     //Sorts words by their repeats
-    private CustomTree<Word> getSortedWords(String... words) {
-        CustomTree<Word> countingWords = new CustomBinaryTree<>();
+    private SortedMap<Word, Integer> coutWordRepeats(String... words) {
+        SortedMap<Word, Integer> map = new TreeMap<>(new Comparator<Word>() {
+            @Override
+            public int compare(Word o1, Word o2) {
+                return o1.getWord().compareTo(o2.getWord());
+            }
+        });
         for (String word : words) {
             int count = 0;
             List<Paragraph> paragraphs = textParser.getText().getParagraphs();
@@ -56,17 +58,40 @@ public class TextWork {
                     }
                 }
             }
-            countingWords.add(new Word(word, count));
+            map.put(new Word(word), count);
         }
-        return countingWords;
+        return map;
     }
-    public String countWords(String... words) {
-        try {
-            return getSortedWords(words).inOrder().toString();
-        } catch (CustomTreeEmptyException ctee) {
-            ctee.printStackTrace();
+    public String countWordsWithSet(String... words) {
+        StringBuilder stringBuilder = new StringBuilder();
+        SortedSet<Map.Entry<Word, Integer>> sortedSet = new TreeSet<>(new Comparator<Map.Entry<Word, Integer>>() {
+            @Override
+            public int compare(Map.Entry<Word, Integer> o1, Map.Entry<Word, Integer> o2) {
+                return o1.getValue().compareTo(o2.getValue())>= 0? -1 : 1;
+            }
+        });
+        SortedMap<Word, Integer> map = coutWordRepeats(words);
+        sortedSet.addAll(map.entrySet());
+        for (Map.Entry e : sortedSet) {
+            stringBuilder.append(e.getKey().toString() + " - " + e.getValue() + "\n");
         }
-        return null;
+        return stringBuilder.toString();
+    }
+    public String countWordsWithList(String... words) {
+        StringBuilder stringBuilder = new StringBuilder();
+        List<Map.Entry<Word, Integer>> list = new ArrayList<>(coutWordRepeats(words).entrySet());
+        Comparator<Map.Entry<Word, Integer>> comparator = new Comparator<Map.Entry<Word, Integer>>() {
+            @Override
+            public int compare(Map.Entry<Word, Integer> o1, Map.Entry<Word, Integer> o2) {
+                return o1.getValue().compareTo(o2.getValue()) > 0? -1 :
+                        o1.getValue().compareTo(o2.getValue()) < 0? 1 : 0;
+            }
+        };
+        Collections.sort(list, comparator);
+        for (Map.Entry e : list) {
+            stringBuilder.append(e.getKey().toString() + " - " + e.getValue() + "\n");
+        }
+        return stringBuilder.toString();
     }
 
     //TASK VARIANT 12
